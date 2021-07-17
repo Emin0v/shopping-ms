@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  mysql:
+    image: mysql:5.5
+    hostname: mysql
+    restart: always
+    volumes:
+      - shopping-ms_mysql_db_data:/var/lib/db_data/kanzopizza/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3335:3306
+
+volumes:
+  shopping-ms_mysql_db_data:

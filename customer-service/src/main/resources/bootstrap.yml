@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: ${PROFILE:DEV}
+  application:
+    name: customer-service
+
+  cloud:
+    config:
+      profile: native
+      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
