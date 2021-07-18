@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductAdapter productAdapter;
 
     @Override
+    @Transactional
     public ProductResDto create(ProductCreateReqDto productCreateReqDto) {
         Product product = productAdapter.map(productCreateReqDto);
         return  productAdapter.map(productRepository.save(product));
@@ -41,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void delete(String uuid) {
         Product product = productRepository.findByUuid(uuid).orElseThrow(()->new ProductNotFoundException("uuid"));
         productRepository.delete(product);

@@ -15,7 +15,8 @@
         <module>service-parent</module>
         <module>config-service</module>
         <module>eureka-service</module>
-        <module>product-ms</module>
+        <module>product-service</module>
+        <module>order-service</module>
     </modules>
 
     <parent>
