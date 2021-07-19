@@ -1,6 +1,5 @@
 package com.company.entity;
 
-import com.company.dto.CustomerCreateReqDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -48,9 +47,9 @@ public class Customer implements Serializable {
     @Column(nullable = false)
     private BigDecimal balance;
 
-//    @JoinColumn(name = "address_id", referencedColumnName = "id")
-//    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private Address address;
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Address address;
 
 
     @PrePersist
@@ -59,14 +58,5 @@ public class Customer implements Serializable {
         setBalance(BigDecimal.valueOf(0));
     }
 
-
-    public Customer(CustomerCreateReqDto dto) {
-        this.name = dto.getName();
-        this.surname = dto.getSurname();
-        this.username = dto.getUsername();
-        this.password = dto.getPassword();
-        this.balance = dto.getBalance();
-//        this.address = new Address(dto.getAddressCreateReqDto());
-    }
 
 }

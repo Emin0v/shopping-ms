@@ -16,5 +16,6 @@ public class CustomerCreateReqDto {
     private String username;
     private String password;
     private BigDecimal balance;
+    private AddressCreateReqDto addressCreateReqDto;
 
 }

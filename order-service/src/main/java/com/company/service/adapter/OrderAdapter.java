@@ -8,8 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface OrderAdapter {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "created_date", ignore = true)
     OrderResDto map(Order order);
 
 }

@@ -1,6 +1,5 @@
 package com.company.entity;
 
-import com.company.dto.AddressCreateReqDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,12 +24,12 @@ public class Address implements Serializable {
     @Column(nullable = false)
     private String title;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.EAGER)
-//    private List<Customer> customers;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.EAGER)
+    private List<Customer> customers;
 
-    @JoinColumn(name = "customer_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Customer customer;
+//    @JoinColumn(name = "customer_id", nullable = false)
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Customer customer;
 
     @Basic(optional = false)
     @Column(nullable = false)
@@ -40,10 +39,4 @@ public class Address implements Serializable {
     @Column(nullable = false)
     private BigDecimal longitude;
 
-    public Address(AddressCreateReqDto dto){
-        this.id = dto.getId();
-        this.title=dto.getTitle();
-        this.latitude=dto.getLatitude();
-        this.longitude=dto.getLongitude();
-    }
 }
