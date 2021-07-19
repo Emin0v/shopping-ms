@@ -18,15 +18,19 @@ import java.util.List;
 public class Address implements Serializable {
 
     @Id
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Basic(optional = false)
     @Column(nullable = false)
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.EAGER)
-    private List<Customer> customers;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.EAGER)
+//    private List<Customer> customers;
+
+    @JoinColumn(name = "customer_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Customer customer;
 
     @Basic(optional = false)
     @Column(nullable = false)

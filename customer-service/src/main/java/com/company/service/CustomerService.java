@@ -1,7 +1,7 @@
 package com.company.service;
 
+import com.company.client.contract.CustomerResDto;
 import com.company.dto.CustomerCreateReqDto;
-import com.company.dto.CustomerResDto;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ public interface CustomerService {
 
     CustomerResDto create(CustomerCreateReqDto createReqDto);
 
-    CustomerResDto update(CustomerCreateReqDto createReqDto);
+    CustomerResDto update(String customerUuid,CustomerCreateReqDto createReqDto);
 
-    CustomerResDto getById(Long id);
+    CustomerResDto getByUuid(String uuid);
 
-    void delete(Long id);
+    void delete(String uuid);
 
     List<CustomerResDto> searchNameOrSurnameOrUsername(String name,String surname,String username);
 

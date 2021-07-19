@@ -1,7 +1,7 @@
 package com.company.api;
 
+import com.company.client.contract.CustomerResDto;
 import com.company.dto.CustomerCreateReqDto;
-import com.company.dto.CustomerResDto;
 import com.company.service.CustomerService;
 import com.company.util.ApiPaths;
 import io.swagger.annotations.Api;
@@ -26,8 +26,8 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerResDto> getById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(customerService.getById(id));
+    public ResponseEntity<CustomerResDto> getByUuid(@PathVariable("id") String uuid) {
+        return ResponseEntity.ok(customerService.getByUuid(uuid));
     }
 
     @GetMapping("/searchNameOrSurnameOrUsername")
@@ -44,14 +44,15 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.create(dto));
     }
 
-    @PutMapping
-    public ResponseEntity<CustomerResDto> update(@RequestBody CustomerCreateReqDto updateDto) {
-        return ResponseEntity.ok(customerService.update(updateDto));
+    @PutMapping("/{uuid}")
+    public ResponseEntity<CustomerResDto> update(@PathVariable(name = "uuid") String uuid,
+                                                     @RequestBody CustomerCreateReqDto updateDto) {
+        return ResponseEntity.ok(customerService.update(uuid,updateDto));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
-        customerService.delete(id);
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<HttpStatus> delete(@PathVariable("uuid") String uuid) {
+        customerService.delete(uuid);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

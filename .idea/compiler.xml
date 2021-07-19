@@ -12,6 +12,7 @@
         <module name="config-service" />
         <module name="order-service" />
         <module name="customer-service" />
+        <module name="service-common" />
       </profile>
     </annotationProcessing>
   </component>
@@ -22,6 +23,7 @@
       <module name="eureka-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
       <module name="product-service" options="-parameters" />
+      <module name="service-common" options="-parameters" />
       <module name="service-parent" options="-parameters" />
       <module name="shopping-ms" options="-parameters" />
     </option>

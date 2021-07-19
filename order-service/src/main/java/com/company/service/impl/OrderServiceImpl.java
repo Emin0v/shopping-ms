@@ -1,5 +1,6 @@
 package com.company.service.impl;
 
+import com.company.client.CustomerServiceClient;
 import com.company.dto.OrderCreateReqDto;
 import com.company.dto.OrderResDto;
 import com.company.entity.Order;
@@ -28,9 +29,13 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderProductAdapter orderProductAdapter;
     private final OrderAdapter orderAdapter;
+    private final CustomerServiceClient customerServiceClient;
 
     @Override
     public OrderResDto create(OrderCreateReqDto reqDto) {
+
+        String id = customerServiceClient.getByUuid(reqDto.getCustomerUuid()).getBody().getId();
+
         Order order = Order.builder()
                 .addressUuid(reqDto.getAddressUuid())
                 .products(reqDto.getOrderProducts()

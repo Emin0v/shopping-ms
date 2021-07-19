@@ -1,6 +1,5 @@
-package com.company.dto;
+package com.company.client.contract;
 
-import com.company.entity.Address;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +12,7 @@ import java.math.BigDecimal;
 public class CustomerResDto {
 
     private String id;
+    private String customerUuid;
     private String name;
     private String surname;
     private String username;

@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -20,8 +21,12 @@ import java.util.UUID;
 public class Customer implements Serializable {
 
     @Id
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String customerUuid;
 
     @Basic(optional = false)
     @Column(name = "name")
@@ -43,25 +48,25 @@ public class Customer implements Serializable {
     @Column(nullable = false)
     private BigDecimal balance;
 
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Address address;
+//    @JoinColumn(name = "address_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private Address address;
 
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
+        setCustomerUuid(UUID.randomUUID().toString());
         setBalance(BigDecimal.valueOf(0));
     }
 
 
-    public Customer(CustomerCreateReqDto dto){
-        this.id = dto.getId();
+    public Customer(CustomerCreateReqDto dto) {
         this.name = dto.getName();
         this.surname = dto.getSurname();
         this.username = dto.getUsername();
         this.password = dto.getPassword();
         this.balance = dto.getBalance();
-        this.address = new Address(dto.getAddressCreateReqDto());
+//        this.address = new Address(dto.getAddressCreateReqDto());
     }
 
 }
