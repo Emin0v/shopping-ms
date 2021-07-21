@@ -7,6 +7,7 @@ import com.company.entity.Order;
 import com.company.exception.OrderNotFoundException;
 import com.company.exception.OrderStatusException;
 import com.company.repository.OrderRepository;
+import com.company.service.OrderNotificationService;
 import com.company.service.OrderService;
 import com.company.service.adapter.OrderAdapter;
 import com.company.service.adapter.OrderProductAdapter;
@@ -30,11 +31,12 @@ public class OrderServiceImpl implements OrderService {
     private final OrderProductAdapter orderProductAdapter;
     private final OrderAdapter orderAdapter;
     private final CustomerServiceClient customerServiceClient;
+    private final OrderNotificationService orderNotificationService;
 
     @Override
     public OrderResDto create(OrderCreateReqDto reqDto) {
 
-        String id = customerServiceClient.getByUuid(reqDto.getCustomerUuid()).getBody().getId();
+        String uuid = customerServiceClient.getByUuid(reqDto.getCustomerUuid()).getBody().getId();
 
         Order order = Order.builder()
                 .addressUuid(reqDto.getAddressUuid())
@@ -42,9 +44,12 @@ public class OrderServiceImpl implements OrderService {
                         .stream()
                         .map(orderProductAdapter::map)
                         .collect(Collectors.toList()))
-                .customerUuid(reqDto.getCustomerUuid())
+                .customerUuid(uuid)
                 .totalAmount(reqDto.getTotalAmount())
                 .build();
+
+        orderNotificationService.sendNotificationToQueue(order);
+
 
         return orderAdapter.map(orderRepository.save(order));
     }
@@ -61,8 +66,8 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findByUuid(uuid)
                 .orElseThrow(() -> new OrderNotFoundException(uuid));
 
-        if(!IN_PROCESS.equals(order.getStatus())){
-             throw new OrderStatusException(CANCELLED);
+        if (!IN_PROCESS.equals(order.getStatus())) {
+            throw new OrderStatusException(CANCELLED);
         }
 
         orderRepository.updateOrderStatus(uuid, CANCELLED, Instant.now());
@@ -74,7 +79,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findByUuid(uuid)
                 .orElseThrow(() -> new OrderNotFoundException(uuid));
 
-        if(!IN_PROCESS.equals(order.getStatus())){
+        if (!IN_PROCESS.equals(order.getStatus())) {
             throw new OrderStatusException(CANCELLED);
         }
 

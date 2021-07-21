@@ -27,12 +27,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductResDto>> getAll(@RequestParam int pageNo,
-                                                      @RequestParam int pageSize) {
+    public ResponseEntity<List<ProductResDto>> getAll(@RequestParam Integer pageNo,
+                                                      @RequestParam Integer pageSize) {
         return ResponseEntity.ok(productService.getAll(pageNo, pageSize));
     }
 
-    @GetMapping
+    @GetMapping("/getAllSorted")
     public ResponseEntity<List<ProductResDto>> getAllSorted(){
         return ResponseEntity.ok(productService.getAllSorted());
     }

@@ -32,8 +32,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResDto> getAll(int pageNo, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNo,pageSize);
+    public List<ProductResDto> getAll(Integer pageNo, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1,pageSize);
 
         return productRepository
                 .findAll(pageable)

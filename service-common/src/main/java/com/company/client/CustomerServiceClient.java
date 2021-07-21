@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FeignClient("customer-service")
 public interface CustomerServiceClient {
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/api/users/{id}")
     ResponseEntity<CustomerResDto> getByUuid(@PathVariable("id") String uuid);
 
 }

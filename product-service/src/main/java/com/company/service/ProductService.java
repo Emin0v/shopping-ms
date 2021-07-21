@@ -11,7 +11,7 @@ public interface ProductService {
 
     ProductResDto create(ProductCreateReqDto productCreateReqDto);
 
-    List<ProductResDto> getAll(int pageNo, int pageSize);
+    List<ProductResDto> getAll(Integer pageNo, Integer pageSize);
 
     List<ProductResDto> getAllSorted();
 
