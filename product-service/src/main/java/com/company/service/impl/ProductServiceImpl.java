@@ -8,10 +8,14 @@ import com.company.repository.ProductRepository;
 import com.company.service.ProductService;
 import com.company.service.adapter.ProductAdapter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,10 +32,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductResDto> search(Pageable pageable) {
+    public List<ProductResDto> getAll(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo,pageSize);
+
         return productRepository
                 .findAll(pageable)
-                .map(productAdapter::map);
+                .map(productAdapter::map).getContent();
+    }
+
+    @Override
+    public List<ProductResDto> getAllSorted() {
+        Sort sort = Sort.by(Sort.Direction.ASC,"title");
+
+        return productRepository
+                .findAll(sort)
+                .stream().map(productAdapter::map)
+                .collect(Collectors.toList());
     }
 
     @Override

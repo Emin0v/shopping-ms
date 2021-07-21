@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
@@ -20,17 +22,23 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<ProductResDto> getById(@PathVariable("uuid") String uuid){
+    public ResponseEntity<ProductResDto> getById(@PathVariable("uuid") String uuid) {
         return ResponseEntity.ok(productService.getById(uuid));
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductResDto>> search(Pageable pageable){
-        return ResponseEntity.ok(productService.search(pageable));
+    public ResponseEntity<List<ProductResDto>> getAll(@RequestParam int pageNo,
+                                                      @RequestParam int pageSize) {
+        return ResponseEntity.ok(productService.getAll(pageNo, pageSize));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductResDto>> getAllSorted(){
+        return ResponseEntity.ok(productService.getAllSorted());
     }
 
     @PostMapping
-    public ResponseEntity<ProductResDto> create(@RequestBody ProductCreateReqDto productCreateReqDto){
+    public ResponseEntity<ProductResDto> create(@RequestBody ProductCreateReqDto productCreateReqDto) {
         return ResponseEntity.status(CREATED).body(productService.create(productCreateReqDto));
     }
 

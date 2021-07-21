@@ -18,6 +18,7 @@
         <module>product-service</module>
         <module>order-service</module>
         <module>service-common</module>
+        <module>zipkin-server</module>
     </modules>
 
     <parent>
