@@ -20,6 +20,8 @@
         <module>service-common</module>
         <module>zipkin-server</module>
         <module>notification-service</module>
+        <module>gateway-service</module>
+        <module>hystrix-dashboard</module>
     </modules>
 
     <parent>

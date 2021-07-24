@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-service" />
-        <module name="zipkin-server" />
         <module name="config-service" />
         <module name="customer-service" />
+        <module name="gateway-service" />
+        <module name="hystrix-dashboard" />
+        <module name="zipkin-server" />
         <module name="service-common" />
         <module name="notification-service" />
       </profile>
@@ -46,6 +48,8 @@
       <module name="config-service" options="-parameters" />
       <module name="customer-service" options="-parameters" />
       <module name="eureka-service" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
+      <module name="hystrix-dashboard" options="-parameters" />
       <module name="notification-service" options="-parameters" />
       <module name="order-service" options="-parameters -Amapstruct.defaultComponentModel=spring" />
       <module name="product-service" options="-parameters -Amapstruct.defaultComponentModel=spring" />
