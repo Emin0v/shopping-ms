@@ -1,14 +1,14 @@
 # **Shopping-microservice**
 
-#####* Spring Cloud
+- Spring Cloud
 
-#####* Eureka
+- Eureka
 
-#####* Gateway
+- Gateway
 
-#####* RabbitMq
+- RabbitMq
 
-#####* Zipkin
+- Zipkin
 
-#####* MySql
+- MySql
 
