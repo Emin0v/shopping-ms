@@ -13,9 +13,8 @@ spring:
           uri: lb://CUSTOMER-SERVICE
           predicates:
             - Path=/api/users/**
-            - Path=/api/address/**
           filters:
-            - RewritePath=/(?<segment>.*), /$\{segment}
+#            - RewritePath=/(?<segment>.*), /$\{segment}
             - name: Hystrix
               args:
                 name: customer-service

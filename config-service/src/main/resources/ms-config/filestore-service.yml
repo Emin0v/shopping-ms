@@ -1,16 +1,10 @@
 server:
-  port: 8502
+  port: 8506
 
-spring:
-  application:
-    name: product-service
-  data:
-    mongodb:
-      authentication-database: admin
-      auto-index-creation: true
-      database: shoppingDb
-      host: localhost
-      port: 27017
+s3.url: http://192.168.99.100:9000
+s3.access-key: shopping-minio
+s3.secret-key: shopping-minio
+s3.bucket: shopping-app
 
 eureka:
   client:

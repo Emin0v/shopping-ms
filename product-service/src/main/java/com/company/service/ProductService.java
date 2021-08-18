@@ -1,22 +1,20 @@
 package com.company.service;
 
-import com.company.dto.ProductCreateReqDto;
-import com.company.dto.ProductResDto;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
-import java.util.List;
+import com.company.dto.product.ProductDetailResponse;
+import com.company.dto.product.ProductResponse;
+import com.company.dto.product.ProductSaveRequest;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface ProductService {
 
-    ProductResDto create(ProductCreateReqDto productCreateReqDto);
+     Flux<ProductResponse> getAll();
 
-    List<ProductResDto> getAll(Integer pageNo, Integer pageSize);
+     Flux<ProductResponse> getAllByCategoryId(String categoryId);
 
-    List<ProductResDto> getAllSorted();
+     ProductResponse save(ProductSaveRequest request);
 
-    ProductResDto getById(String uuid);
+     Mono<Long> count();
 
-    void delete(String uuid);
-
+     Mono<ProductDetailResponse> getProductDetail(String id);
 }

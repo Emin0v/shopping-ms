@@ -1,13 +1,14 @@
-package com.company.entity;
+package com.company.model.category;
 
 
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -32,13 +33,26 @@ public class Product implements Serializable {
     @Basic(optional = false)
     private String title;
 
+    @Column(name = "code")
+    @Basic(optional = false)
+    private String code;
+
+    private String features;
+
+    private Boolean active;
+
+    @Column(name = "category_id")
+    @Basic(optional = false)
+    private String categoryId;
+
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
-    @Positive
-    @NotNull
-    private BigDecimal price;
+    @SuppressWarnings("JpaAttributeTypeInspection")
+    private HashMap<MoneyTypes, BigDecimal> price;
+
+    @SuppressWarnings("JpaAttributeTypeInspection")
+    private List<ProductImage> productImage;
 
     @PrePersist
     public void prePersist(){

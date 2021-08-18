@@ -22,6 +22,7 @@
         <module>notification-service</module>
         <module>gateway-service</module>
         <module>hystrix-dashboard</module>
+        <module>filestore-service</module>
     </modules>
 
     <parent>
