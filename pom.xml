@@ -23,6 +23,7 @@
         <module>gateway-service</module>
         <module>hystrix-dashboard</module>
         <module>filestore-service</module>
+        <module>auth-service</module>
     </modules>
 
     <parent>
