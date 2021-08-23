@@ -36,5 +36,11 @@
             <artifactId>spring-cloud-starter-eureka</artifactId>
             <version>1.4.7.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.company</groupId>
+            <artifactId>service-common</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>

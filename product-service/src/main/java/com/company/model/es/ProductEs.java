@@ -1,22 +1,21 @@
 package com.company.model.es;
 
 import com.company.model.MoneyTypes;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
 @Document(indexName = "product")
-@Getter
-@Setter
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class ProductEs {
+public class ProductEs implements Serializable {
     private String id;
     private String name;
     private String code;

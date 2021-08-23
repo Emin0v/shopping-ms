@@ -4,7 +4,13 @@ server:
 spring:
   application:
     name: product-service
+
   data:
+    elasticsearch:
+      client:
+        reactive:
+          endpoints: 192.168.99.100:9201
+
     mongodb:
       authentication-database: admin
       auto-index-creation: true
@@ -20,7 +26,16 @@ eureka:
       defaultZone: ${EUREKA_SERVER_URL:http://localhost:8500/eureka/}
 
 management:
+  health:
+    elasticsearch:
+      enabled: false
   endpoints:
     web:
       exposure:
         include: "*"
+
+
+s3.url: http://192.168.99.100:9000
+s3.access-key: shopping-minio
+s3.secret-key: shopping-minio
+s3.bucket: shopping-app

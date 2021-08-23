@@ -1,9 +1,9 @@
 package com.company.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -11,13 +11,8 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "password")
-public class UserDTO {
-
-    @NotEmpty(message = "*Please provide your first name")
-    private String name;
-
-    private String surname;
+@Builder
+public class LoginDTO {
 
     @Email(message = "*Please provide a valid email")
     @NotEmpty(message = "*Please provide an email")

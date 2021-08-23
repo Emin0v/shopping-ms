@@ -13,11 +13,11 @@ import java.io.InputStream;
 @FeignClient("filestore-service")
 public interface FileStoreServiceClient {
 
-    @GetMapping("filestore/{id}")
+    @GetMapping("/filestore/{id}")
     Mono<Void> getImage(@PathVariable("id") String id, ServerWebExchange serverWebExchange)
             throws Exception;
 
-    @PostMapping("filestore/{id}")
+    @PostMapping("/filestore/{id}")
     void saveImage(@PathVariable(value = "id", required = false) String id,
                           @RequestBody InputStream inputStream);
 

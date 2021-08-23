@@ -1,0 +1,35 @@
+server:
+  port: ${SERVER_PORT:8509}
+
+spring:
+  application:
+    name: auth-gateway
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.99.100:3335/microservice?createDatabaseIfNotExist=true
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8500}/eureka/
+    register-with-eureka: false
+  instance:
+    preferIpAddress: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+security:
+  signing-key: MaHaMMaD
+  encoding-strength: 256

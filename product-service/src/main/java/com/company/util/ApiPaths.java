@@ -12,7 +12,4 @@ public class ApiPaths {
         public static final String CTRL = BASE_PATH + "/category";
     }
 
-    public static final class FileStoreCtrl{
-        public static final String CTRL = BASE_PATH + "/filestore";
-    }
 }

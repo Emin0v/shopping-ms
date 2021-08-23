@@ -14,7 +14,7 @@ spring:
           predicates:
             - Path=/api/users/**
           filters:
-#            - RewritePath=/(?<segment>.*), /$\{segment}
+            - RewritePath=/api/users/(?<segment>.*), /$\{segment}
             - name: Hystrix
               args:
                 name: customer-service
@@ -25,7 +25,7 @@ spring:
           predicates:
             - Path=/api/products/**
           filters:
-            - RewritePath=/(?<segment>.*), /$\{segment}
+            - RewritePath=/api/products/(?<segment>.*), /$\{segment}
             - name: Hystrix
               args:
                 name: product-service

@@ -4,19 +4,20 @@ import com.company.client.FileStoreServiceClient;
 import com.company.dto.category.CategoryResponse;
 import com.company.dto.category.CategorySaveRequest;
 import com.company.dto.product.ProductSaveRequest;
+import com.company.filestore.service.FileStoreService;
 import com.company.model.MoneyTypes;
 import com.company.repository.es.ProductEsRepository;
 import com.company.service.CategoryService;
 import com.company.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class ProductDemoData {
     private final ProductService productService;
     private final CategoryService categoryService;
     private final ProductEsRepository productEsRepository;
-    private final FileStoreServiceClient fileStoreServiceClient;
+    private final FileStoreService fileStoreService;
 
 
     @EventListener(ApplicationReadyEvent.class)
@@ -46,8 +47,8 @@ public class ProductDemoData {
 
             productEsRepository.deleteAll().block();
 
-            categoryService.save(CategorySaveRequest.builder().name("Elektronik").build());
-            CategoryResponse telefon = categoryService.save(CategorySaveRequest.builder().name("Cep Telefonu").build());
+            categoryService.save(CategorySaveRequest.builder().name("WOMENS").build());
+            CategoryResponse mens = categoryService.save(CategorySaveRequest.builder().name("MENS").build());
 
 
             IntStream.range(0, 20).forEach(item -> {
@@ -60,11 +61,15 @@ public class ProductDemoData {
 
                 byte[] file = null;
                 try {
-                    file = Files.readAllBytes(ResourceUtils.getFile("classpath:product-images/phone.jpg").toPath());
-                } catch (IOException e) {
+                    file = Files.readAllBytes(ResourceUtils.getFile("classpath:product-images/shirt.jpg").toPath());
+
+                } catch (Exception e) {
                     log.error("File read error : ", e);
                 }
-                fileStoreServiceClient.saveImage(imgUuid, new ByteArrayInputStream(file));
+//               InputStream inputStream = getClass().getResourceAsStream("/product-images/shirt.jpg");
+
+
+                fileStoreService.saveImage(imgUuid,  new ByteArrayInputStream(file));
 
 
                 productService.save(
@@ -73,9 +78,9 @@ public class ProductDemoData {
                                 .id(randomUUID().toString())
                                 .description("Product Description " + item)
                                 .price(price)
-                                .categoryId(telefon.getId())
+                                .categoryId(mens.getId())
                                 .name("Product Name " + item)
-                                .features("<li>Black Color</li> <li>Aluminum Case</li> <li>2 Years Warranty</li> <li>5 Inch (35x55mm)</li>")
+                                .features("<li>T-shirt</li> <li>Cotton</li> <li>2 Years Warranty</li>")
                                 .images(List.of(imgUuid))
                                 .build());
 

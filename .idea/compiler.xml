@@ -11,25 +11,13 @@
         <module name="auth-service" />
         <module name="config-service" />
         <module name="customer-service" />
+        <module name="gateway-service" />
         <module name="hystrix-dashboard" />
         <module name="filestore-service" />
+        <module name="product-service" />
         <module name="zipkin-server" />
         <module name="service-common" />
         <module name="notification-service" />
-      </profile>
-      <profile name="Annotation profile for product-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
-        </processorPath>
-        <module name="product-service" />
       </profile>
       <profile name="Annotation profile for shopping-ms" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -40,7 +28,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
         </processorPath>
-        <module name="gateway-service" />
         <module name="order-service" />
       </profile>
     </annotationProcessing>
@@ -52,11 +39,11 @@
       <module name="customer-service" options="-parameters" />
       <module name="eureka-service" options="-parameters" />
       <module name="filestore-service" options="-parameters" />
-      <module name="gateway-service" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="gateway-service" options="-parameters" />
       <module name="hystrix-dashboard" options="-parameters" />
       <module name="notification-service" options="-parameters" />
       <module name="order-service" options="-parameters -Amapstruct.defaultComponentModel=spring" />
-      <module name="product-service" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="product-service" options="-parameters" />
       <module name="service-common" options="-parameters" />
       <module name="service-parent" options="-parameters" />
       <module name="shopping-ms" options="-parameters" />
