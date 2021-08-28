@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: auth-gateway
+    name: auth-service
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.99.100:3335/microservice?createDatabaseIfNotExist=true
+    url: jdbc:mysql://192.168.99.100:3335/shoppingDb
     username: root
     password: root
   jpa:

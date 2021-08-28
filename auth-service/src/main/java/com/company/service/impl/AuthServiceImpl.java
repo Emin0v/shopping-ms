@@ -1,5 +1,6 @@
 package com.company.service.impl;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.company.dto.BaseApiResponse;
 import com.company.dto.LoginDTO;
 import com.company.dto.RegisterDTO;
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.Set;
@@ -26,7 +28,10 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    public static BCrypt.Hasher crypt = BCrypt.withDefaults();
+
     @Override
+    @Transactional
     public BaseApiResponse register(RegisterDTO dto) {
         try {
             Optional<Role> role = roleRepository.findByRole("ROLE_USER");
@@ -39,7 +44,7 @@ public class AuthServiceImpl implements AuthService {
                     .isEnabled(true)
                     .isExpired(false)
                     .isLocked(false)
-                    .password(passwordEncoder.encode(dto.getPassword()))
+                    .password(crypt.hashToString(4, dto.getPassword().toCharArray()))
                     .role(Set.of(role.get()))
                     .build();
 
@@ -62,6 +67,8 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public BaseApiResponse login(LoginDTO loginDTO) {
+
+
         return null;
     }
 }

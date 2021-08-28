@@ -2,9 +2,11 @@ package com.company.api;
 
 import com.company.dto.product.ProductDetailResponse;
 import com.company.dto.product.ProductResponse;
+import com.company.dto.product.ProductSaveRequest;
 import com.company.service.ProductService;
 import com.company.util.ApiPaths;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -27,6 +29,10 @@ public class ProductController {
         return productService.getProductDetail(id);
     }
 
+    @PostMapping
+    public ResponseEntity<ProductResponse> save(ProductSaveRequest productSaveRequest){
+        return ResponseEntity.ok(productService.save(productSaveRequest));
+    }
 
 
 }

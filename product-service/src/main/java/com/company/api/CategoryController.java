@@ -1,11 +1,13 @@
 package com.company.api;
 
 import com.company.dto.category.CategoryResponse;
+import com.company.dto.category.CategorySaveRequest;
 import com.company.dto.product.ProductResponse;
 import com.company.service.CategoryService;
 import com.company.service.ProductService;
 import com.company.util.ApiPaths;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
@@ -26,5 +28,10 @@ public class CategoryController {
     @GetMapping("/{categoryId}")
     public Flux<ProductResponse> getAllByCategoryId(@PathVariable("categoryId") String categoryId) {
         return productService.getAllByCategoryId(categoryId);
+    }
+
+    @PostMapping
+    public ResponseEntity<CategoryResponse> save(CategorySaveRequest saveRequest){
+        return ResponseEntity.ok(categoryService.save(saveRequest));
     }
 }

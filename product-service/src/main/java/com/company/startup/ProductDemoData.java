@@ -11,7 +11,6 @@ import com.company.service.CategoryService;
 import com.company.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -47,29 +46,36 @@ public class ProductDemoData {
 
             productEsRepository.deleteAll().block();
 
-            categoryService.save(CategorySaveRequest.builder().name("WOMENS").build());
+            CategoryResponse women = categoryService.save(CategorySaveRequest.builder().name("WOMENS").build());
             CategoryResponse mens = categoryService.save(CategorySaveRequest.builder().name("MENS").build());
+            CategoryResponse kids = categoryService.save(CategorySaveRequest.builder().name("KIDS").build());
 
 
-            IntStream.range(0, 20).forEach(item -> {
+            IntStream.range(0, 5).forEach(item -> {
                 HashMap<MoneyTypes, BigDecimal> price = new HashMap<>() {{
                     put(MoneyTypes.USD, BigDecimal.valueOf((item + 1) * 5));
                     put(MoneyTypes.EUR, BigDecimal.valueOf((item + 1) * 4));
                 }};
 
-                String imgUuid = UUID.randomUUID().toString();
+                String imgUuidM = UUID.randomUUID().toString();
+                String imgUuidW = UUID.randomUUID().toString();
+                String imgUuidK = UUID.randomUUID().toString();
 
-                byte[] file = null;
+                byte[] mensFile = null;
+                byte[] womensFile = null;
+                byte[] kidsFile = null;
                 try {
-                    file = Files.readAllBytes(ResourceUtils.getFile("classpath:product-images/shirt.jpg").toPath());
+                    mensFile = Files.readAllBytes(ResourceUtils.getFile("classpath:product-images/shirt.jpg").toPath());
+                    womensFile = Files.readAllBytes(ResourceUtils.getFile("classpath:product-images/womens.jpg").toPath());
+                    kidsFile = Files.readAllBytes(ResourceUtils.getFile("classpath:product-images/kids.jpg").toPath());
 
                 } catch (Exception e) {
                     log.error("File read error : ", e);
                 }
-//               InputStream inputStream = getClass().getResourceAsStream("/product-images/shirt.jpg");
 
-
-                fileStoreService.saveImage(imgUuid,  new ByteArrayInputStream(file));
+                fileStoreService.saveImage(imgUuidM,  new ByteArrayInputStream(mensFile));
+                fileStoreService.saveImage(imgUuidW,  new ByteArrayInputStream(womensFile));
+                fileStoreService.saveImage(imgUuidK,  new ByteArrayInputStream(kidsFile));
 
 
                 productService.save(
@@ -81,9 +87,32 @@ public class ProductDemoData {
                                 .categoryId(mens.getId())
                                 .name("Product Name " + item)
                                 .features("<li>T-shirt</li> <li>Cotton</li> <li>2 Years Warranty</li>")
-                                .images(List.of(imgUuid))
+                                .images(List.of(imgUuidM))
                                 .build());
 
+                productService.save(
+                        ProductSaveRequest.builder()
+                                .sellerId(randomUUID().toString())
+                                .id(randomUUID().toString())
+                                .description("Product Description " + item)
+                                .price(price)
+                                .categoryId(women.getId())
+                                .name("Product Name " + item)
+                                .features("<li>Cotton</li> <li>2 Years Warranty</li>")
+                                .images(List.of(imgUuidW))
+                                .build());
+
+                productService.save(
+                        ProductSaveRequest.builder()
+                                .sellerId(randomUUID().toString())
+                                .id(randomUUID().toString())
+                                .description("Product Description " + item)
+                                .price(price)
+                                .categoryId(kids.getId())
+                                .name("Product Name " + item)
+                                .features("<li>Cotton</li> <li>2 Years Warranty</li>")
+                                .images(List.of(imgUuidK))
+                                .build());
 
             });
         }

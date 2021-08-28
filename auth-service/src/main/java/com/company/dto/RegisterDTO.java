@@ -12,16 +12,12 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 public class RegisterDTO {
 
-    @NotEmpty(message = "*Please provide your first name")
     private String name;
 
     private String surname;
 
-    @Email(message = "*Please provide a valid email")
-    @NotEmpty(message = "*Please provide an email")
     private String email;
 
-    @NotEmpty(message = "*Please provide your password")
     private String password;
 
 }

@@ -29,8 +29,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception{
         configurer
                 .inMemory()
-                .withClient("alma")
-                .secret(passwordEncoder.encode("alma"))
+                .withClient("shopping")
+                .secret(passwordEncoder.encode("shopping"))
                 .authorizedGrantTypes("password")
                 .scopes("read","write")
                 .resourceIds("gateway-service");

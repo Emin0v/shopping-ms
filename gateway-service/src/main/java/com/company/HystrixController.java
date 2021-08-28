@@ -17,4 +17,9 @@ public class HystrixController {
     public String ticketFallback(){
         return "Product Service is not available.";
     }
+
+    @GetMapping("/auth")
+    public String authFallback(){
+        return "Auth Service is not available.";
+    }
 }

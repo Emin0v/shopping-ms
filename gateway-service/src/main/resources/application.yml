@@ -29,8 +29,18 @@ spring:
             - name: Hystrix
               args:
                 name: product-service
-                fallbackUri: forward:/fb/product
+                fallbackUri: forward:/fb/products
 
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/(?<segment>.*), /$\{segment}
+            - name: Hystrix
+              args:
+                name: auth-service
+                fallbackUri: forward:/fb/auth
 eureka:
   client:
     serviceUrl:
