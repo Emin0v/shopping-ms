@@ -1,17 +1,15 @@
-package com.company.coreapi.events;
+package com.company.coreapi.query;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class CartCreatedEvent {
+@AllArgsConstructor
+public class FindCartQuery {
 
     private UUID cartId;
 
