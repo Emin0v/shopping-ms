@@ -1,0 +1,32 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: cart-service
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+axon:
+  axonserver:
+    servers: 192.168.99.100:8124
+
+
+eureka:
+  client:
+    instance:
+      hostname: ${EUREKA_SERVER_HOSTNAME:localhost}
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8500/eureka/}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
