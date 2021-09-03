@@ -67,24 +67,24 @@ public class CartAggregate {
 
     @EventSourcingHandler
     public void on(ProductSelectedEvent event) {
-        log.info("Processing product selection event {}",event);
-        selectedProducts.merge(event.getCartId(), event.getQuantity(), Integer::sum);
+        log.info("Processing product selection event {}", event);
+        selectedProducts.merge(event.getProductId(), event.getQuantity(), Integer::sum);
         log.info("The cart state is {}", this);
     }
 
     @EventSourcingHandler
     public void on(ProductDeSelectedEvent event) {
-        log.info("Processing product deselection event {}",event);
-        if(!selectedProducts.containsKey(event.getProductId())){
+        log.info("Processing product deselection event {}", event);
+        if (!selectedProducts.containsKey(event.getProductId())) {
             throw new ProductDeSelectedException();
         }
 
-
         Integer value = selectedProducts.get(event.getProductId());
-        if (value - event.getQuantity() < 0)
+        if (value - event.getQuantity() < 0) {
             selectedProducts.put(event.getProductId(), 0);
-        selectedProducts.put(event.getProductId(), value - event.getQuantity());
-
+        } else {
+            selectedProducts.put(event.getProductId(), value - event.getQuantity());
+        }
 
         log.info("The cart state is {}", this);
     }

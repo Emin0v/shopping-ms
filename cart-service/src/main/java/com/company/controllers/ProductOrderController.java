@@ -5,7 +5,7 @@ import com.company.coreapi.commands.CreateCartCommand;
 import com.company.coreapi.commands.DeSelectProductCommand;
 import com.company.coreapi.commands.SelectProductCommand;
 import com.company.coreapi.query.FindCartQuery;
-import com.company.dto.CartDTO;
+import com.company.dto.CartView;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -44,9 +44,9 @@ public class ProductOrderController {
     }
 
     @GetMapping("/{cartId}")
-    public CompletableFuture<CartDTO> handle(@PathVariable("cartId") String cartId) {
+    public CompletableFuture<CartView> handle(@PathVariable("cartId") String cartId) {
         return queryGateway.query(new FindCartQuery(UUID.fromString(cartId)),
-                ResponseTypes.instanceOf(CartDTO.class));
+                ResponseTypes.instanceOf(CartView.class));
     }
 
 

@@ -20,6 +20,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+            <version>2.2.5.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -60,7 +61,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
-            <version>1.4.3.RELEASE</version>
+            <version>1.4.7.RELEASE</version>
         </dependency>
 
         <dependency>

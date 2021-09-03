@@ -2,9 +2,10 @@ package com.company.projector;
 
 import com.company.coreapi.domain.Cart;
 import com.company.coreapi.events.CartCreatedEvent;
+import com.company.coreapi.events.ProductSelectedEvent;
 import com.company.coreapi.query.FindCartQuery;
 import com.company.coreapi.repository.CartRepository;
-import com.company.dto.CartDTO;
+import com.company.dto.CartView;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -31,11 +33,23 @@ public class CartProjector {
         );
     }
 
+    @EventHandler
+    @Transactional
+    public void on(ProductSelectedEvent event){
+        cartRepository.save(
+                Cart.builder()
+                        .cartId(event.getCartId())
+                        .products(Map.of(event.getProductId(),event.getQuantity()))
+                        .build()
+        );
+    }
+
     @QueryHandler
     @Transactional
-    public CartDTO handle(FindCartQuery query){
+    public CartView handle(FindCartQuery query){
         Cart cart = cartRepository.findById(query.getCartId()).orElse(null);
-        return modelMapper.map(cart, CartDTO.class);
+        System.out.println("Bura geldi : cart = "+cart);
+        return modelMapper.map(cart, CartView.class);
     }
 
 }
