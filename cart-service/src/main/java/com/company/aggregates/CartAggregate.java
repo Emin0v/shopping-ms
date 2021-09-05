@@ -27,8 +27,8 @@ import java.util.UUID;
 public class CartAggregate {
 
     @AggregateIdentifier
-    private UUID cardId;
-    private Map<UUID, Integer> selectedProducts;
+    private String cardId;
+    private Map<String, Integer> selectedProducts;
 
     @CommandHandler
     public CartAggregate(CreateCartCommand command) {

@@ -65,6 +65,13 @@
             <optional>true</optional>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.company</groupId>
+            <artifactId>service-common</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>

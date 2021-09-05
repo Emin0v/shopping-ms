@@ -25,6 +25,8 @@
         <module>filestore-service</module>
         <module>auth-service</module>
         <module>cart-service</module>
+        <module>payment-service</module>
+        <module>banking-service</module>
     </modules>
 
     <parent>

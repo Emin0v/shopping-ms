@@ -1,13 +1,13 @@
 package com.company.service;
 
-import com.company.dto.BaseApiResponse;
-import com.company.dto.LoginDTO;
-import com.company.dto.RegisterDTO;
+import com.company.dto.JwtTokenDto;
+import com.company.dto.LoginRequestDto;
+import com.company.dto.RegisterRequestDto;
 
 public interface AuthService {
 
-    BaseApiResponse register(RegisterDTO registerDTO);
+    void register(RegisterRequestDto registerRequestDto);
 
-    BaseApiResponse login(LoginDTO loginDTO);
+    JwtTokenDto login(LoginRequestDto loginRequestDto);
 
 }

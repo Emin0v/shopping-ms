@@ -8,7 +8,7 @@ import java.util.UUID;
 @Data
 public class CartView {
 
-    private UUID cartId;
-    private Map<UUID, Integer> products;
+    private String cartId;
+    private Map<String, Integer> products;
 
 }

@@ -26,7 +26,7 @@ public class ProductOrderController {
     private final QueryGateway queryGateway;
 
     @PostMapping
-    public UUID handle(){
+    public String handle(){
         log.info("Received cart action");
         return commandGateway.sendAndWait(new CreateCartCommand());
     }
@@ -45,7 +45,7 @@ public class ProductOrderController {
 
     @GetMapping("/{cartId}")
     public CompletableFuture<CartView> handle(@PathVariable("cartId") String cartId) {
-        return queryGateway.query(new FindCartQuery(UUID.fromString(cartId)),
+        return queryGateway.query(new FindCartQuery(cartId),
                 ResponseTypes.instanceOf(CartView.class));
     }
 

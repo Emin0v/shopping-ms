@@ -47,8 +47,8 @@ public class CartProjector {
     @QueryHandler
     @Transactional
     public CartView handle(FindCartQuery query){
+        System.out.println("Cart id = "+ query.getCartId());
         Cart cart = cartRepository.findById(query.getCartId()).orElse(null);
-        System.out.println("Bura geldi : cart = "+cart);
         return modelMapper.map(cart, CartView.class);
     }
 

@@ -15,5 +15,5 @@ import java.util.UUID;
 public class ConfirmOrderCommand {
 
     @TargetAggregateIdentifier
-    private UUID cartId;
+    private String cartId;
 }

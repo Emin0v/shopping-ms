@@ -19,10 +19,10 @@ import java.util.UUID;
 public class Cart {
 
     @Id
-    private UUID cartId;
+    private String cartId;
 
     @ElementCollection
-    private Map<UUID, Integer> products;
+    private Map<String, Integer> products;
 
 
 }

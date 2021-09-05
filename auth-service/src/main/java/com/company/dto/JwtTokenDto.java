@@ -5,11 +5,10 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Builder
-public class BaseApiResponse {
+public class JwtTokenDto {
 
-    private String message;
-    private Integer status;
+    private String authToken;
+    private String refreshToken;
 
 }

@@ -13,9 +13,9 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ProductSelectedEvent {
 
-    private UUID cartId;
+    private String cartId;
 
-    private UUID productId;
+    private String productId;
 
     private Integer quantity;
 

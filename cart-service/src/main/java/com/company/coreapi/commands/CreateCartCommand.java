@@ -15,7 +15,7 @@ import java.util.UUID;
 public class CreateCartCommand {
 
     @TargetAggregateIdentifier
-    private UUID cartId= UUID.randomUUID();
+    private String cartId= UUID.randomUUID().toString();
 
 
 }

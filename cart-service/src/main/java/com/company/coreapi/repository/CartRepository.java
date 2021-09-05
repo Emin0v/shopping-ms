@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.UUID;
 
-public interface CartRepository extends MongoRepository<Cart, UUID> {
+public interface CartRepository extends MongoRepository<Cart, String> {
 }

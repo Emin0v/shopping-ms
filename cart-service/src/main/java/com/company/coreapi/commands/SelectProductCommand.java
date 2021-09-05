@@ -16,10 +16,10 @@ import java.util.UUID;
 public class SelectProductCommand {
 
     @TargetAggregateIdentifier
-    private UUID cartId;
+    private String cartId;
 
     @NotNull
-    private UUID productId;
+    private String productId;
 
     @NotNull
     private Integer quantity;

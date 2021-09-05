@@ -13,6 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class CartCreatedEvent {
 
-    private UUID cartId;
+    private String cartId;
 
 }
