@@ -1,23 +1,32 @@
 package com.company.entity;
 
-import lombok.*;
-
-import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "customer")
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 @Data
+@Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id"})
-@ToString(exclude = {"password"})
-@Builder
-public class Customer implements Serializable {
+@Table(name = Customer.TABLE_NAME)
+@EqualsAndHashCode(callSuper = true)
+public class Customer extends AbstractAuditingEntity {
+    public static final String TABLE_NAME = "customers";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,38 +34,21 @@ public class Customer implements Serializable {
 
     @NotNull
     @Column(nullable = false, unique = true)
-    private String customerUuid;
+    private String uuid;
 
-    @Basic(optional = false)
-    @Column(name = "name")
-    private String name;
-
-    @Basic(optional = false)
-    @Column(name = "surname")
-    private String surname;
-
-    @Basic(optional = false)
-    @Column(name = "username")
-    private String username;
-
-    @Basic(optional = false)
-    @Column(name = "password")
-    private String password;
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String userUuid;
 
     @Min(0)
+    @NotNull
     @Column(nullable = false)
     private BigDecimal balance;
 
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Address address;
-
-
     @PrePersist
     public void prePersist() {
-        setCustomerUuid(UUID.randomUUID().toString());
+        setUuid(UUID.randomUUID().toString());
         setBalance(BigDecimal.valueOf(0));
     }
-
-
 }
+

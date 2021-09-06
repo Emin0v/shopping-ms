@@ -36,7 +36,11 @@ public class User  extends AbstractAuditingEntity {
 
     @NotBlank
     @Column(nullable = false)
-    private String fullName;
+    private String name;
+
+    @NotBlank
+    @Column(nullable = false)
+    private String surname;
 
     @NotBlank
     @Email
@@ -47,11 +51,11 @@ public class User  extends AbstractAuditingEntity {
     @Size(min = PASSWORD_MIN_LENGTH , max = PASSWORD_MAX_LENGTH)
     private String password;
 
-    private UserAuthority userAuthority;
+    private UserAuthority authority;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private UserStatus userStatus;
+    private UserStatus status;
 
 
     @PrePersist

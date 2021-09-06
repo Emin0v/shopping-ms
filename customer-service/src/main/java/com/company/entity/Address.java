@@ -1,42 +1,59 @@
 package com.company.entity;
 
-import lombok.*;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "address")
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@Builder
-public class Address implements Serializable {
+@Table(name = Address.TABLE_NAME)
+@EqualsAndHashCode(callSuper = true)
+public class Address extends AbstractAuditingEntity {
+    public static final String TABLE_NAME = "address";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String uuid;
+
+    @NotBlank
     @Column(nullable = false)
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.EAGER)
-    private List<Customer> customers;
+    @JoinColumn(name = "customer_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Customer customer;
 
-//    @JoinColumn(name = "customer_id", nullable = false)
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Customer customer;
-
-    @Basic(optional = false)
+    @NotNull
     @Column(nullable = false)
     private BigDecimal latitude;
 
-    @Basic(optional = false)
+    @NotNull
     @Column(nullable = false)
     private BigDecimal longitude;
 
+    @PrePersist
+    public void prePersist() {
+        setUuid(UUID.randomUUID().toString());
+    }
 }

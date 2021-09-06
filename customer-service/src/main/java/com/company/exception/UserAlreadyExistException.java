@@ -2,11 +2,9 @@ package com.company.exception;
 
 public class UserAlreadyExistException extends RuntimeException {
 
-    public UserAlreadyExistException(){
+    public static final String MESSAGE = "Customer with given userUuid [%s] is already registered";
 
-    }
-
-    public UserAlreadyExistException(String message){
-        super(message);
+    public UserAlreadyExistException(String uuid) {
+        super(String.format(MESSAGE, uuid));
     }
 }

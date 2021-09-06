@@ -18,7 +18,10 @@ import static com.company.security.constants.AuthConstants.PASSWORD_MIN_LENGTH;
 public class RegisterRequestDto {
 
     @NotBlank
-    private String fullName;
+    private String name;
+
+    @NotBlank
+    private String surname;
 
     @Email
     @NotBlank

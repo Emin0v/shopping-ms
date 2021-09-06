@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductPriceResDto {
+
     private String uuid;
     private BigDecimal price;
 }

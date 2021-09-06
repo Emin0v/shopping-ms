@@ -1,4 +1,4 @@
-package com.company.client.contract;
+package com.company.dto.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,13 +9,13 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerResDto {
+public class UserRespDto {
 
     private String id;
-    private String customerUuid;
+    private String uuid;
     private String name;
     private String surname;
-    private String username;
+    private String email;
     private BigDecimal balance;
 
 }
