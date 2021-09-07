@@ -14,6 +14,7 @@
         <module name="product-service" />
         <module name="notification-service" />
         <module name="eureka-service" />
+        <module name="auth-service" />
         <module name="payment-service" />
         <module name="gateway-service" />
         <module name="hystrix-dashboard" />
@@ -30,14 +31,13 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
         </processorPath>
-        <module name="auth-service" />
         <module name="order-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="auth-service" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="auth-service" options="-parameters" />
       <module name="banking-service" options="-parameters" />
       <module name="cart-service" options="-parameters" />
       <module name="config-service" options="-parameters" />

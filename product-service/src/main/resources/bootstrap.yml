@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: ${PROFILE:DEV}
+
+  main:
+      allow-bean-definition-overriding: true
   application:
     name: product-service
 

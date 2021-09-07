@@ -12,13 +12,19 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping(ApiPaths.CategoryCtrl.CTRL)
 @CrossOrigin
 public class CategoryController {
 
     private final CategoryService categoryService;
     private final ProductService productService;
+
+
+    public CategoryController(CategoryService categoryService,
+                              ProductService productService){
+        this.categoryService=categoryService;
+        this.productService= productService;
+    }
 
     @GetMapping
     public Flux<CategoryResponse> getAll(){

@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    Optional<Customer> getByCustomerUuid(String uuid);
+    Optional<Customer> getByUserUuid(String uuid);
 
 }

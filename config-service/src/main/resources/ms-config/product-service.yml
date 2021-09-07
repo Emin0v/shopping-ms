@@ -35,7 +35,21 @@ management:
         include: "*"
 
 
-s3.url: http://192.168.99.100:9000
-s3.access-key: shopping-minio
-s3.secret-key: shopping-minio
-s3.bucket: shopping-app
+s3:
+  url: http://192.168.99.100:9000
+  access-key: shopping-minio
+  secret-key: shopping-minio
+  bucket: shopping-app
+
+security:
+  jwtProperties:
+    secret: ${APP_SECRET_KEY:VGhpcyBteSBzZWNyZXQga2V5IGZvciBBcHBsaWNhdGlvbi4gUGxlYXNlIGNoYW5nZSBpbiBwcm9kdWN0aW9uLg==}
+    token-validity-in-seconds: 86400
+    token-validity-in-seconds-for-remember-me: 604800
+  cors:
+    allowed-origin-patterns: '*'
+    allowed-methods: '*'
+    allowed-headers: '*'
+    exposed-headers: 'Authorization,Link,X-Total-Count'
+    allow-credentials: true
+    max-age: 1800

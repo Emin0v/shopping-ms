@@ -1,5 +1,6 @@
 package com.company.service.impl;
 
+import com.company.client.CartServiceClient;
 import com.company.client.CustomerServiceClient;
 import com.company.entity.Customer;
 import com.company.exception.UserAlreadyExistException;
@@ -18,19 +19,20 @@ import java.util.Optional;
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final CustomerServiceClient customerServiceClient;
+    private final CartServiceClient cartServiceClient;
     private final ModelMapper modelMapper;
 
     @Override
     @Transactional
     public void register(String uuid) {
 
-        Optional<Customer> found = customerRepository.getByCustomerUuid(uuid);
+        Optional<Customer> found = customerRepository.getByUserUuid(uuid);
         if(found.isPresent()){
             throw new UserAlreadyExistException(uuid);
         }
 
-        customerRepository.save(Customer.builder().userUuid(uuid).build());
+        Customer saved = customerRepository.save(Customer.builder().userUuid(uuid).build());
+        cartServiceClient.createCart(saved.getCartId());
 
     }
 

@@ -2,10 +2,9 @@ spring:
   profiles:
     active: ${PROFILE:DEV}
   application:
-    name: customer-service
+    name: auth-service
   main:
-      allow-bean-definition-overriding: true
-
+        allow-bean-definition-overriding: true
   cloud:
     config:
       profile: native

@@ -2,10 +2,10 @@ spring:
   profiles:
     active: ${PROFILE:DEV}
   application:
-    name: customer-service
-  main:
-      allow-bean-definition-overriding: true
+    name: cart-service
 
+  main:
+        allow-bean-definition-overriding: true
   cloud:
     config:
       profile: native

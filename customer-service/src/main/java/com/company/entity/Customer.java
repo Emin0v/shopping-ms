@@ -40,6 +40,8 @@ public class Customer extends AbstractAuditingEntity {
     @Column(nullable = false, unique = true)
     private String userUuid;
 
+    private String cartId;
+
     @Min(0)
     @NotNull
     @Column(nullable = false)
@@ -48,6 +50,7 @@ public class Customer extends AbstractAuditingEntity {
     @PrePersist
     public void prePersist() {
         setUuid(UUID.randomUUID().toString());
+        setCartId(UUID.randomUUID().toString());
         setBalance(BigDecimal.valueOf(0));
     }
 }

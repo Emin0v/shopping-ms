@@ -1,16 +1,29 @@
 server:
-  port: 9090
+  port: ${SERVER_PORT:8509}
 
 spring:
   application:
-    name: cart-service
+    name: auth-service
+  main:
+      allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.99.100:3335/shoppingDb
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
 
 eureka:
   client:
-    instance:
-      hostname: ${EUREKA_SERVER_HOSTNAME:localhost}
     serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8500/eureka/}
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8500}/eureka/
+    register-with-eureka: false
+  instance:
+    preferIpAddress: true
 
 management:
   endpoints:
@@ -29,4 +42,4 @@ security:
     allowed-headers: '*'
     exposed-headers: 'Authorization,Link,X-Total-Count'
     allow-credentials: true
-    max-age: 180
+    max-age: 1800
