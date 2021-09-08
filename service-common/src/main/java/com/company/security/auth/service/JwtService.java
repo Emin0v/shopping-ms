@@ -32,10 +32,12 @@ public final class JwtService {
     public void init() {
         byte[] keyBytes;
         keyBytes = Decoders.BASE64.decode(applicationProperties.getJwtProperties().getSecret());
+        System.out.println("Key="+key);
         key = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public Claims parseToken(String token) {
+        System.out.println("Token="+token);
         return Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()

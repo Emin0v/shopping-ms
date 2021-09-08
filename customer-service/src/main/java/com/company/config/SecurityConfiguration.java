@@ -1,5 +1,7 @@
 package com.company.config;
 
+import java.util.List;
+
 import com.company.security.auth.AuthenticationEntryPointConfigurer;
 import com.company.security.auth.service.AuthService;
 import com.company.security.auth.service.JwtService;
@@ -10,12 +12,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-import java.util.List;
-
 import static com.company.constants.HttpConstants.SUB_PATH;
-import static com.company.security.constants.UserAuthority.ADMIN;
 import static com.company.security.constants.UserAuthority.USER;
-import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 @Slf4j
 @Import({
@@ -24,7 +23,8 @@ import static org.springframework.http.HttpMethod.GET;
 })
 @EnableWebSecurity
 public class SecurityConfiguration extends BaseSecurityConfig {
-    private static final String ORDER_API = "/api/cart";
+    private static final String CUSTOMER_API = "/api/users";
+    private static final String ADDRESS_API = "/api/address";
 
     public SecurityConfiguration(SecurityProperties securityProperties, List<AuthService> authServices) {
         super(securityProperties, authServices);
@@ -33,8 +33,9 @@ public class SecurityConfiguration extends BaseSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(GET, ORDER_API + "/v1/admin").access(authorities(ADMIN))
-                .antMatchers(ORDER_API + SUB_PATH).access(authorities(USER));
+                .antMatchers(POST, CUSTOMER_API + "/register").permitAll()
+                .antMatchers(CUSTOMER_API + SUB_PATH).access(authorities(USER))
+                .antMatchers(ADDRESS_API + SUB_PATH).access(authorities(USER));
 
         super.configure(http);
     }

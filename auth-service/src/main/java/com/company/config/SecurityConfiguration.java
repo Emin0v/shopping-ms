@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static com.company.constants.HttpConstants.SUB_PATH;
 import static com.company.security.constants.UserAuthority.ADMIN;
+import static com.company.security.constants.UserAuthority.USER;
 
 @Slf4j
 @EnableWebSecurity
@@ -25,8 +26,7 @@ import static com.company.security.constants.UserAuthority.ADMIN;
 @Import({SecurityProperties.class, JwtService.class, AuthenticationEntryPointConfigurer.class})
 public class SecurityConfiguration extends BaseSecurityConfig {
     private static final String AUTH_API = "/api/auth";
-    private static final String USER_API = "/api/user";
-    private static final String ACCOUNT_API = "/api/account";
+    private static final String USER_API = "/api/users";
 
     public SecurityConfiguration(SecurityProperties securityProperties, JwtService jwtService) {
         super(securityProperties, List.of(new TokenAuthService(jwtService)));
@@ -36,8 +36,7 @@ public class SecurityConfiguration extends BaseSecurityConfig {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(AUTH_API + SUB_PATH).permitAll()
-                .antMatchers(USER_API + SUB_PATH).access(authorities(ADMIN))
-                .antMatchers(ACCOUNT_API + SUB_PATH).authenticated();
+                .antMatchers(USER_API + SUB_PATH).access(authorities(USER));
 
         super.configure(http);
     }

@@ -63,5 +63,5 @@ volumes:
 #  axonserver-config:
 
 
-networks:
-  axon-demo:
+#networks:
+#  axon-demo:

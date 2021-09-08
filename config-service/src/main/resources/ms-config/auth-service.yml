@@ -31,6 +31,13 @@ management:
       exposure:
         include: "*"
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+
 security:
   jwtProperties:
     secret: ${APP_SECRET_KEY:VGhpcyBteSBzZWNyZXQga2V5IGZvciBBcHBsaWNhdGlvbi4gUGxlYXNlIGNoYW5nZSBpbiBwcm9kdWN0aW9uLg==}

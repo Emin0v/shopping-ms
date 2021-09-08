@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient("cart-service")
 public interface CartServiceClient {
 
-    @PostMapping("/api/cart/{id}")
+    @PostMapping("/api/cart/createCart/{id}")
     ResponseEntity<HttpStatus> createCart(@PathVariable("id") String id);
 
 }

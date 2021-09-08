@@ -19,19 +19,9 @@
         <module name="gateway-service" />
         <module name="hystrix-dashboard" />
         <module name="zipkin-server" />
+        <module name="order-service" />
         <module name="banking-service" />
         <module name="service-common" />
-      </profile>
-      <profile name="Annotation profile for shopping-ms" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
-        </processorPath>
-        <module name="order-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -47,7 +37,7 @@
       <module name="gateway-service" options="-parameters" />
       <module name="hystrix-dashboard" options="-parameters" />
       <module name="notification-service" options="-parameters" />
-      <module name="order-service" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="order-service" options="-parameters" />
       <module name="payment-service" options="-parameters" />
       <module name="product-service" options="-parameters" />
       <module name="service-common" options="-parameters" />

@@ -48,7 +48,7 @@ public class User  extends AbstractAuditingEntity {
 
     @NotBlank
     @Column(nullable = false)
-    @Size(min = PASSWORD_MIN_LENGTH , max = PASSWORD_MAX_LENGTH)
+    @Size(min = PASSWORD_MIN_LENGTH , max = 190)
     private String password;
 
     private UserAuthority authority;
