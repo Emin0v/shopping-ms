@@ -20,13 +20,19 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderResDto> create(@RequestBody @Validated OrderCreateReqDto reqDto) {
+    public ResponseEntity<String> create(@RequestBody @Validated OrderCreateReqDto reqDto) {
         return ResponseEntity.status(CREATED).body(orderService.create(reqDto));
     }
 
     @GetMapping
     public ResponseEntity<Page<OrderResDto>> search(Pageable pageable) {
         return ResponseEntity.ok(orderService.search(pageable));
+    }
+
+    @GetMapping("/search/{pageNo}/{pageSize}")
+    public ResponseEntity<Page<OrderResDto>> search(@PathVariable("pageNo") int pageNo,
+                                                    @PathVariable("pageSize") int pageSize){
+        return ResponseEntity.ok(orderService.search(pageNo,pageSize));
     }
 
     @PostMapping("/{uuid}/cancel")

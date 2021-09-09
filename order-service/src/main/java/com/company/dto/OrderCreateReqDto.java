@@ -19,7 +19,5 @@ public class OrderCreateReqDto {
     private List<OrderProductCreateReqDto> orderProducts;
 
     private String addressUuid;
-    private String customerUuid;
-    private BigDecimal totalAmount;
 
 }

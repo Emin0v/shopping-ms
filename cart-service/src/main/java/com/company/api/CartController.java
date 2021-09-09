@@ -29,7 +29,7 @@ public class CartController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<CartRespDto> findByCartId(@PathVariable("id") String id,
+    public ResponseEntity<CartRespDto> addProductToCart(@PathVariable("id") String id,
                                                     @RequestBody CartProductDto cartProductDto){
         return ResponseEntity.ok(cartService.addProductToCart(id, cartProductDto));
     }

@@ -7,11 +7,13 @@ import org.springframework.data.domain.Pageable;
 
 public interface OrderService {
 
-    OrderResDto create(OrderCreateReqDto reqDto);
+    String create(OrderCreateReqDto reqDto);
 
     Page<OrderResDto> search(Pageable pageable);
 
     void cancel(String uuid);
 
     void finish(String uuid);
+
+    Page<OrderResDto> search(int pageNo, int pageSize);
 }

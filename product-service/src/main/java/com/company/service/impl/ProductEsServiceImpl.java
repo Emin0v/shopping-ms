@@ -1,5 +1,7 @@
 package com.company.service.impl;
 
+import com.company.dto.product.ProductPriceResDto;
+import com.company.model.MoneyTypes;
 import com.company.model.Product;
 import com.company.model.category.Category;
 import com.company.model.es.CompanyEs;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,5 +64,14 @@ public class ProductEsServiceImpl implements ProductEsService {
     @Override
     public Mono<ProductEs> findById(String id) {
         return productEsRepository.findById(id);
+    }
+
+    @Override
+    public Set<ProductPriceResDto> getProductPrice(Set<String> productUuids) {
+        return productEsRepository.
+                findAllByIdIn(new ArrayList<>(productUuids))
+                .toStream()
+                .map(productEs -> new ProductPriceResDto(productEs.getId(),productEs.getPrice().get(MoneyTypes.USD)))
+                .collect(Collectors.toSet());
     }
 }

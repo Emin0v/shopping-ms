@@ -13,9 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import java.util.List;
 
 import static com.company.constants.HttpConstants.SUB_PATH;
-import static com.company.security.constants.UserAuthority.ADMIN;
 import static com.company.security.constants.UserAuthority.USER;
-import static org.springframework.http.HttpMethod.GET;
 
 @Slf4j
 @Import({
@@ -33,7 +31,6 @@ public class SecurityConfiguration extends BaseSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(GET, ORDER_API + "/v1/admin").access(authorities(ADMIN))
                 .antMatchers(ORDER_API + SUB_PATH).access(authorities(USER));
 
         super.configure(http);
