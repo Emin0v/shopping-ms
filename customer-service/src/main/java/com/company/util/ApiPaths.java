@@ -12,12 +12,8 @@ public class ApiPaths {
         public static final String CTRL = BASE_PATH + "/address";
     }
 
-    public static final class AuthCtrl{
-        public static final String CTRL = BASE_PATH + "/auth";
-    }
-
-    public static final class CartCtrl{
-        public static final String CTRL = BASE_PATH + "/cart";
+    public static final class PaymentCtrl{
+        public static final String CTRL = BASE_PATH + "/payment";
     }
 
 }

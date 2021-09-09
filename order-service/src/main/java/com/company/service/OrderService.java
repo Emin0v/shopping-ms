@@ -9,8 +9,6 @@ public interface OrderService {
 
     String create(OrderCreateReqDto reqDto);
 
-    Page<OrderResDto> search(Pageable pageable);
-
     void cancel(String uuid);
 
     void finish(String uuid);

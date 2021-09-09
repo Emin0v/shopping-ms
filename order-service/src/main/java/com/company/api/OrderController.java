@@ -24,11 +24,6 @@ public class OrderController {
         return ResponseEntity.status(CREATED).body(orderService.create(reqDto));
     }
 
-    @GetMapping
-    public ResponseEntity<Page<OrderResDto>> search(Pageable pageable) {
-        return ResponseEntity.ok(orderService.search(pageable));
-    }
-
     @GetMapping("/search/{pageNo}/{pageSize}")
     public ResponseEntity<Page<OrderResDto>> search(@PathVariable("pageNo") int pageNo,
                                                     @PathVariable("pageSize") int pageSize){

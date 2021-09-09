@@ -16,7 +16,6 @@ import com.company.security.exception.UserNotFoundException;
 import com.company.service.OrderNotificationService;
 import com.company.service.OrderService;
 import com.company.service.adapter.OrderAdapter;
-import com.company.service.adapter.OrderProductAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,7 +36,6 @@ import static com.company.entity.OrderStatus.*;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
-    private final OrderProductAdapter orderProductAdapter;
     private final OrderAdapter orderAdapter;
     private final SecurityService securityService;
     private final CustomerServiceClient customerServiceClient;
