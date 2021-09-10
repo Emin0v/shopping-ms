@@ -18,7 +18,7 @@ import java.util.Set;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ApiPaths.ProductCtrl.CTRL)
-@CrossOrigin
+//@CrossOrigin("*")
 public class ProductController {
 
     private final ProductService productService;

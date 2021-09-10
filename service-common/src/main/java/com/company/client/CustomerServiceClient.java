@@ -1,5 +1,7 @@
 package com.company.client;
 
+import com.company.dto.customer.PayReqDto;
+import com.company.dto.customer.RollbackReqDto;
 import com.company.dto.customer.UserRespDto;
 import com.company.dto.customer.RegisterReqDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -14,5 +16,12 @@ public interface CustomerServiceClient {
 
     @PostMapping("/api/users/register")
     void register(@RequestBody RegisterReqDto reqDto);
+
+
+    @PostMapping("/api/payment/pay")
+    void pay(@RequestBody PayReqDto reqDto);
+
+    @PostMapping("/api/payment/rollback")
+    void rollback(@RequestBody RollbackReqDto reqDto);
 
 }

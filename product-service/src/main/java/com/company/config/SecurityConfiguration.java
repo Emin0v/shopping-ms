@@ -24,7 +24,8 @@ import static org.springframework.http.HttpMethod.GET;
 })
 @EnableWebSecurity
 public class SecurityConfiguration extends BaseSecurityConfig {
-    private static final String ORDER_API = "/api/products";
+    private static final String PRODUCT_API = "/api/products";
+    private static final String CATEGORY_API = "/api/category";
 
     public SecurityConfiguration(SecurityProperties securityProperties, List<AuthService> authServices) {
         super(securityProperties, authServices);
@@ -33,8 +34,10 @@ public class SecurityConfiguration extends BaseSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(GET, ORDER_API + "/v1/admin").access(authorities(ADMIN))
-                .antMatchers(ORDER_API + SUB_PATH).access(authorities(USER));
+                .antMatchers(GET, CATEGORY_API + SUB_PATH).permitAll()
+                .antMatchers(GET, PRODUCT_API + SUB_PATH).permitAll()
+                .antMatchers(PRODUCT_API + SUB_PATH).access(authorities(USER))
+                .antMatchers(CATEGORY_API + SUB_PATH).access(authorities(USER));
 
         super.configure(http);
     }

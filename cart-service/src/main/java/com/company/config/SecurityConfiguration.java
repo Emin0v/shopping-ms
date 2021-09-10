@@ -33,9 +33,7 @@ public class SecurityConfiguration extends BaseSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(GET, CART_API + SUB_PATH).access(authorities(USER))
-                .antMatchers( CART_API+"/createCart"+ SUB_PATH).permitAll();
-
+                .antMatchers( CART_API + SUB_PATH).permitAll();
 
         super.configure(http);
     }

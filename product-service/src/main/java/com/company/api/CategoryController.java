@@ -13,7 +13,7 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping(ApiPaths.CategoryCtrl.CTRL)
-@CrossOrigin
+//@CrossOrigin("*")
 public class CategoryController {
 
     private final CategoryService categoryService;

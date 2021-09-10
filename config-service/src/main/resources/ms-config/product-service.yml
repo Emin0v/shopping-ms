@@ -29,6 +29,8 @@ management:
   health:
     elasticsearch:
       enabled: false
+    mongo:
+      enabled: false
   endpoints:
     web:
       exposure:

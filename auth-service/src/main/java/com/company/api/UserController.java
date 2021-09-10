@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ApiPaths.CustomerCtrl.CTRL)
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;

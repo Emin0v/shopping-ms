@@ -24,9 +24,7 @@
         <module>hystrix-dashboard</module>
         <module>filestore-service</module>
         <module>auth-service</module>
-        <module>banking-service</module>
         <module>cart-service</module>
-        <module>payment-service</module>
     </modules>
 
     <parent>

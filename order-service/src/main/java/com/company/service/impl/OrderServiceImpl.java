@@ -5,6 +5,7 @@ import com.company.client.ProductServiceClient;
 import com.company.dto.OrderCreateReqDto;
 import com.company.dto.OrderProductCreateReqDto;
 import com.company.dto.OrderResDto;
+import com.company.dto.customer.PayReqDto;
 import com.company.dto.product.ProductPriceResDto;
 import com.company.entity.Order;
 import com.company.entity.OrderProduct;
@@ -32,7 +33,6 @@ import static com.company.entity.OrderStatus.*;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
@@ -43,6 +43,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderNotificationService orderNotificationService;
 
     @Override
+    @Transactional
     public String create(OrderCreateReqDto reqDto) {
 
         String currentUserUuid = securityService
@@ -82,7 +83,7 @@ public class OrderServiceImpl implements OrderService {
 
         orderBuilder.totalAmount(sum);
 
-        // Todo pay process
+        customerServiceClient.pay(new PayReqDto(sum));
 
         var saved = orderRepository.save(orderBuilder.build());
 
@@ -102,6 +103,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public void cancel(String uuid) {
         Order order = orderRepository.findByUuid(uuid)
                 .orElseThrow(() -> new OrderNotFoundException(uuid));
@@ -115,6 +117,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public void finish(String uuid) {
         Order order = orderRepository.findByUuid(uuid)
                 .orElseThrow(() -> new OrderNotFoundException(uuid));

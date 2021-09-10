@@ -10,6 +10,6 @@ public interface PaymentService {
 
     void rollback(RollbackReqDto reqDto);
 
-    void top(CardDto reqDto);
+    void increaseBalance(CardDto dto);
 
 }

@@ -36,8 +36,6 @@ services:
       MINIO_ROOT_PASSWORD: shopping-minio
     command: server /data
 
-  redis:
-    image: "redis:alpine"
 
 #  axonserver:
 #    image: axoniq/axonserver

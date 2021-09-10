@@ -30,7 +30,7 @@ public class PaymentServiceImpl implements PaymentService {
             throw new InsufficientFundException();
         }
 
-        // Call Payment Service
+        //payment service call...
 
         customerRepository.updateBalance(customer.getId(),customer.getBalance().subtract(reqDto.getTotalAmount()));
 
@@ -39,17 +39,27 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     @Transactional
     public void rollback(RollbackReqDto reqDto) {
-        var currentUserUuid = securityService.getCurrentUserUuid().orElseThrow(UserNotFoundException::new);
-        var customer = customerRepository.getByUserUuid(currentUserUuid).orElseThrow(UserNotFoundException::new);
+        String currentUserUuid = securityService.getCurrentUserUuid().orElseThrow(UserNotFoundException::new);
+        Customer customer = customerRepository.getByUserUuid(currentUserUuid).orElseThrow(UserNotFoundException::new);
 
-        // External payment service call...
+        //payment service call...
 
         customerRepository.updateBalance(customer.getId(), customer.getBalance().add(reqDto.getTotalAmount()));
     }
 
     @Override
     @Transactional
-    public void top(CardDto reqDto) {
+    public void increaseBalance(CardDto dto) {
+        if (dto.getDummyCardBalance().compareTo(dto.getAmount()) < 0) {
+            throw new InsufficientFundException();
+        }
 
+        var currentUserUuid = securityService.getCurrentUserUuid().orElseThrow(UserNotFoundException::new);
+        var customer = customerRepository.getByUserUuid(currentUserUuid).orElseThrow(UserNotFoundException::new);
+
+        //payment service call...
+
+        customerRepository.updateBalance(customer.getId(), customer.getBalance().add(dto.getAmount()));
     }
+
 }

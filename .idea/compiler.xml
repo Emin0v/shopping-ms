@@ -15,15 +15,17 @@
         <module name="notification-service" />
         <module name="eureka-service" />
         <module name="auth-service" />
-        <module name="payment-service" />
         <module name="gateway-service" />
         <module name="hystrix-dashboard" />
         <module name="zipkin-server" />
         <module name="order-service" />
-        <module name="banking-service" />
         <module name="service-common" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="banking-service" target="11" />
+      <module name="payment-service" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

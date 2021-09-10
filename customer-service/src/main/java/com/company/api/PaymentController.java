@@ -8,14 +8,12 @@ import com.company.util.ApiPaths;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ApiPaths.PaymentCtrl.CTRL)
+@CrossOrigin
 public class PaymentController {
     private final PaymentService paymentService;
 
@@ -32,8 +30,8 @@ public class PaymentController {
     }
 
     @PostMapping("/top")
-    public ResponseEntity<Void> top(@RequestBody @Validated CardDto cardDto) {
-        paymentService.top(cardDto);
+    public ResponseEntity<Void> increaseBalance(@RequestBody @Validated CardDto cardDto) {
+        paymentService.increaseBalance(cardDto);
         return ResponseEntity.ok().build();
     }
 }
