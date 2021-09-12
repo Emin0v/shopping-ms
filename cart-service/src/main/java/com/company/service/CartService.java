@@ -9,5 +9,5 @@ public interface CartService {
 
      void createCart(String id);
 
-     CartRespDto addProductToCart(String id, CartProductDto dto);
+     CartRespDto addProductToCart(CartProductDto dto);
 }

@@ -28,9 +28,8 @@ public class CartController {
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<CartRespDto> addProductToCart(@PathVariable("id") String id,
-                                                    @RequestBody CartProductDto cartProductDto){
-        return ResponseEntity.ok(cartService.addProductToCart(id, cartProductDto));
+    @PostMapping
+    public ResponseEntity<CartRespDto> addProductToCart(@RequestBody CartProductDto cartProductDto){
+        return ResponseEntity.ok(cartService.addProductToCart(cartProductDto));
     }
 }

@@ -16,6 +16,7 @@ import static com.company.constants.HttpConstants.SUB_PATH;
 import static com.company.security.constants.UserAuthority.ADMIN;
 import static com.company.security.constants.UserAuthority.USER;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 @Slf4j
 @Import({

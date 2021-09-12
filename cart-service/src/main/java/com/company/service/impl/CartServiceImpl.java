@@ -34,8 +34,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public CartRespDto addProductToCart(String id, CartProductDto cartProductDto) {
-        Cart cart = cartRepository.findById(id).get();
+    public CartRespDto addProductToCart(CartProductDto cartProductDto) {
+        Cart cart = cartRepository.findById(cartProductDto.getCartId()).get();
         cart.setProducts(Map.of(cartProductDto.getProductId(),cartProductDto.getCount()));
 
         return cartAdapter.map(cart);

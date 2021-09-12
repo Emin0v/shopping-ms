@@ -11,6 +11,8 @@ import java.util.Map;
 @AllArgsConstructor
 public class CartProductDto {
 
+   private String cartId;
+
    private String productId;
 
    private Integer count;

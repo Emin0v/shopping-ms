@@ -26,6 +26,7 @@ import static org.springframework.http.HttpMethod.GET;
 public class SecurityConfiguration extends BaseSecurityConfig {
     private static final String PRODUCT_API = "/api/products";
     private static final String CATEGORY_API = "/api/category";
+    private static final String FILESTORE_API = "/api/filestore";
 
     public SecurityConfiguration(SecurityProperties securityProperties, List<AuthService> authServices) {
         super(securityProperties, authServices);
@@ -37,7 +38,8 @@ public class SecurityConfiguration extends BaseSecurityConfig {
                 .antMatchers(GET, CATEGORY_API + SUB_PATH).permitAll()
                 .antMatchers(GET, PRODUCT_API + SUB_PATH).permitAll()
                 .antMatchers(PRODUCT_API + SUB_PATH).access(authorities(USER))
-                .antMatchers(CATEGORY_API + SUB_PATH).access(authorities(USER));
+                .antMatchers(CATEGORY_API + SUB_PATH).access(authorities(USER))
+                .antMatchers(FILESTORE_API + SUB_PATH).permitAll();
 
         super.configure(http);
     }
