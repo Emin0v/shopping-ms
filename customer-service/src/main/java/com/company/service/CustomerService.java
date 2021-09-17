@@ -1,7 +1,11 @@
 package com.company.service;
 
+import java.math.BigDecimal;
+
 public interface CustomerService {
 
-    public void register(String uuid);
+    void register(String uuid);
+
+    BigDecimal getBalance(String userUuid);
 
 }

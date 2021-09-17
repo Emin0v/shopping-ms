@@ -97,7 +97,7 @@ public class ProductServiceImpl implements ProductService {
 
     private Mono<ProductDetailResponse> mapToDto(Mono<ProductEs> product) {
         return product.map( item -> ProductDetailResponse.builder()
-                .price(item.getPrice().get("USD"))
+                .price(item.getPrice().get(MoneyTypes.USD))
                 .moneySymbol(MoneyTypes.USD.getSymbol())
                 .name(item.getName())
                 .features(item.getFeatures())

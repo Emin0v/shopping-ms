@@ -29,7 +29,8 @@ public class CartController {
     }
 
     @PostMapping
-    public ResponseEntity<CartRespDto> addProductToCart(@RequestBody CartProductDto cartProductDto){
-        return ResponseEntity.ok(cartService.addProductToCart(cartProductDto));
+    public ResponseEntity<HttpStatus> addProductToCart(@RequestBody CartProductDto cartProductDto){
+        cartService.addProductToCart(cartProductDto);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 }

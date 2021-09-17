@@ -22,9 +22,9 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartRespDto findByCartId(String id) {
-        Optional<Cart> optionalCart = cartRepository.findById(id);
+        Cart cart = cartRepository.findById(id).get();
 
-        return cartAdapter.map(optionalCart.get());
+        return cartAdapter.map(cart);
     }
 
     @Override
@@ -34,10 +34,10 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public CartRespDto addProductToCart(CartProductDto cartProductDto) {
+    public boolean addProductToCart(CartProductDto cartProductDto) {
         Cart cart = cartRepository.findById(cartProductDto.getCartId()).get();
         cart.setProducts(Map.of(cartProductDto.getProductId(),cartProductDto.getCount()));
 
-        return cartAdapter.map(cart);
+        return true;
     }
 }

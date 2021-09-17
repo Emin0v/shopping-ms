@@ -1,5 +1,6 @@
 package com.company.service.impl;
 
+import com.company.client.CustomerServiceClient;
 import com.company.dto.customer.UserRespDto;
 import com.company.dto.customer.UserUpdateDto;
 import com.company.entity.User;
@@ -20,13 +21,16 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final CustomerServiceClient customerServiceClient;
 
     @Override
     public UserRespDto findByUserUuid(String uuid) {
-        Optional<User> userOptional = userRepository.findByUuid(uuid);
+        User user = userRepository.findByUuid(uuid).get();
 
-        return userMapper.toUserRespDto(userOptional.get());
+        UserRespDto userRespDto = userMapper.toUserRespDto(user);
+        userRespDto.setBalance(customerServiceClient.getBalance(user.getUuid()).getBody());
 
+        return userRespDto;
     }
 
     @Override

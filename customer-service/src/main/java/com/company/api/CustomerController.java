@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
@@ -28,6 +30,12 @@ public class CustomerController {
     public ResponseEntity<Void> register(@RequestBody @Validated RegisterReqDto reqDto) {
         customerService.register(reqDto.getUserUuid());
         return ResponseEntity.status(CREATED).build();
+    }
+
+    @GetMapping("/balance/{uuid}")
+    public ResponseEntity<BigDecimal> getBalance(@PathVariable("uuid") String uuid){
+        BigDecimal balance = customerService.getBalance(uuid);
+        return ResponseEntity.ok(balance);
     }
 
 

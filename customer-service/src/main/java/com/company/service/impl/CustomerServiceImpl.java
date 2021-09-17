@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 
@@ -34,6 +35,11 @@ public class CustomerServiceImpl implements CustomerService {
         Customer saved = customerRepository.save(Customer.builder().userUuid(uuid).build());
         cartServiceClient.createCart(saved.getCartId());
 
+    }
+
+    @Override
+    public BigDecimal getBalance(String userUuid){
+        return customerRepository.getBalance(userUuid);
     }
 
 }
