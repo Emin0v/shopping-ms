@@ -4,6 +4,7 @@ import com.company.dto.customer.PayReqDto;
 import com.company.dto.customer.RollbackReqDto;
 import com.company.dto.customer.UserRespDto;
 import com.company.dto.customer.RegisterReqDto;
+import com.company.utilities.results.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,7 @@ public interface CustomerServiceClient {
     ResponseEntity<BigDecimal> getBalance(@PathVariable("uuid") String uuid);
 
     @PostMapping("/api/users/register")
-    void register(@RequestBody RegisterReqDto reqDto);
-
+    Result register(@RequestBody RegisterReqDto reqDto);
 
     @PostMapping("/api/payment/pay")
     void pay(@RequestBody PayReqDto reqDto);

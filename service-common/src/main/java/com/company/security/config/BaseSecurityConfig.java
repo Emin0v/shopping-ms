@@ -36,17 +36,21 @@ public abstract class BaseSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
         //Disallow all requests by default unless explicitly defined in submodules
         http.authorizeRequests().antMatchers(ACTUATOR).permitAll();
-        http.authorizeRequests().anyRequest().access(authorities(UserAuthority.ADMIN.name()));
+
+//        http.authorizeRequests().anyRequest().access(authorities(UserAuthority.ADMIN.name()));
+        http.authorizeRequests().anyRequest().permitAll();
+
+
         // Apply AuthRequestFilter
         http.apply(new AuthFilterConfigurerAdapter(authServices));
     }
 
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui",
-                "/swagger-resources/**", "/configuration/**", "/swagger-ui.html",
-                "/webjars/**", "/csrf", "/");
-    }
+//    @Override
+//    public void configure(WebSecurity web) {
+//        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui",
+//                "/swagger-resources/**", "/configuration/**", "/swagger-ui.html",
+//                "/webjars/**", "/csrf", "/");
+//    }
 
     protected String authority(String role) {
         return "hasAuthority('" + role + "')";
@@ -68,10 +72,4 @@ public abstract class BaseSecurityConfig extends WebSecurityConfigurerAdapter {
         return joiner.toString();
     }
 
-    protected CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = securityProperties.getCors();
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
 }

@@ -3,6 +3,7 @@ package com.company.api;
 import com.company.dto.customer.RegisterReqDto;
 import com.company.service.CustomerService;
 import com.company.util.ApiPaths;
+import com.company.utilities.results.Result;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,8 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody @Validated RegisterReqDto reqDto) {
-        customerService.register(reqDto.getUserUuid());
-        return ResponseEntity.status(CREATED).build();
+    public Result register(@RequestBody @Validated RegisterReqDto reqDto) {
+        return customerService.register(reqDto.getUserUuid());
     }
 
     @GetMapping("/balance/{uuid}")

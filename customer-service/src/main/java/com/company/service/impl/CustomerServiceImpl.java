@@ -1,11 +1,14 @@
 package com.company.service.impl;
 
 import com.company.client.CartServiceClient;
-import com.company.client.CustomerServiceClient;
+import com.company.dto.customer.UserRespDto;
 import com.company.entity.Customer;
-import com.company.exception.UserAlreadyExistException;
 import com.company.repo.CustomerRepository;
 import com.company.service.CustomerService;
+import com.company.utilities.results.DataResult;
+import com.company.utilities.results.ErrorDataResult;
+import com.company.utilities.results.ErrorResult;
+import com.company.utilities.results.Result;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -25,16 +28,18 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public void register(String uuid) {
+    public Result register(String uuid) {
 
         Optional<Customer> found = customerRepository.getByUserUuid(uuid);
         if(found.isPresent()){
-            throw new UserAlreadyExistException(uuid);
+             return new Result(false,"User already exist");
+//            throw new UserAlreadyExistException(uuid);
         }
 
         Customer saved = customerRepository.save(Customer.builder().userUuid(uuid).build());
         cartServiceClient.createCart(saved.getCartId());
 
+        return new Result(true,"User registered");
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.company.repo.UserRepository;
 import com.company.security.SecurityUtil;
 import com.company.service.AuthService;
 import com.company.service.mapper.UserMapper;
+import com.company.utilities.results.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
     private final CustomerServiceClient customerServiceClient;
 
     @Override
-    public void register(RegisterRequestDto registerRequestDto) {
+    public Result register(RegisterRequestDto registerRequestDto) {
         User user = userMapper.registerDtoToEntity(registerRequestDto);
         user.setAuthority(USER);
         user.setStatus(ACTIVE);
@@ -39,7 +40,7 @@ public class AuthServiceImpl implements AuthService {
 
         user = userRepository.save(user);
 
-        customerServiceClient.register(new RegisterReqDto(user.getUuid()));
+        return customerServiceClient.register(new RegisterReqDto(user.getUuid()));
     }
 
     @Override

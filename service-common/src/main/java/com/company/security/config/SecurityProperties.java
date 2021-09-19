@@ -13,8 +13,6 @@ public class SecurityProperties {
 
     private final JwtProperties jwtProperties = new JwtProperties();
 
-    private final CorsConfiguration cors = new CorsConfiguration();
-
     @Getter
     @Setter
     public static class JwtProperties {

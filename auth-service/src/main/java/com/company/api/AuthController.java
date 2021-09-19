@@ -6,6 +6,7 @@ import com.company.dto.RegisterRequestDto;
 import com.company.service.AuthService;
 import com.company.service.UserService;
 import com.company.util.ApiPaths;
+import com.company.utilities.results.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +23,9 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody @Validated RegisterRequestDto registerRequestDto) {
+    public Result register(@RequestBody @Validated RegisterRequestDto registerRequestDto) {
         log.trace("Register user: {}", registerRequestDto);
-        authService.register(registerRequestDto);
-        return ResponseEntity.ok().build();
+        return authService.register(registerRequestDto);
     }
 
     @PostMapping("/login")

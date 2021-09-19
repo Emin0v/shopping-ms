@@ -36,7 +36,8 @@ public class SecurityConfiguration extends BaseSecurityConfig {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(AUTH_API + SUB_PATH).permitAll()
-                .antMatchers(USER_API + SUB_PATH).access(authorities(USER));
+//                .antMatchers(USER_API + SUB_PATH).access(authorities(USER));
+                .antMatchers(USER_API + SUB_PATH).permitAll();
 
         super.configure(http);
     }
