@@ -1,4 +1,4 @@
-# **Shopping-microservice**
+# **Shopping-microservices**
 
 ##### Spring Cloud
 
