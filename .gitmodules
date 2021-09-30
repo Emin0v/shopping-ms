@@ -1,3 +1,4 @@
 [submodule "shopping-frontend"]
 	path = shopping-frontend
 	url = https://github.com/Emin0v/shopping-frontend.git
+

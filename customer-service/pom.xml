@@ -57,7 +57,7 @@
 
         <dependency>
             <groupId>com.company</groupId>
-            <artifactId>service-common</artifactId>
+            <artifactId>common-service</artifactId>
             <version>1.0</version>
         </dependency>
 

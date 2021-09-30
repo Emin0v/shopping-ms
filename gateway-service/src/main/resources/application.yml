@@ -34,13 +34,27 @@ spring:
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/auth/**
+            - Path=api/auth/**
           filters:
-            - RewritePath=/auth/(?<segment>.*), /$\{segment}
+            - RewritePath=/api/auth/(?<segment>.*), /$\{segment}
             - name: Hystrix
               args:
                 name: auth-service
                 fallbackUri: forward:/fb/auth
+
+        - id: auth-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=api/orders/**
+          filters:
+            - RewritePath=/api/orders/(?<segment>.*), /$\{segment}
+            - name: Hystrix
+              args:
+                name: order-service
+                fallbackUri: forward:/fb/order
+
+
+
 eureka:
   client:
     serviceUrl:

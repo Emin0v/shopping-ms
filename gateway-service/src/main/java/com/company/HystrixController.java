@@ -22,4 +22,9 @@ public class HystrixController {
     public String authFallback(){
         return "Auth Service is not available.";
     }
+
+    @GetMapping("/order")
+    public String orderFallback(){
+        return "Auth Service is not available.";
+    }
 }

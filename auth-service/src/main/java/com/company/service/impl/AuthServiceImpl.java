@@ -16,6 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 import static com.company.security.constants.UserAuthority.USER;
 import static com.company.security.constants.UserStatus.ACTIVE;
 
@@ -32,6 +34,10 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Result register(RegisterRequestDto registerRequestDto) {
+        Optional<User> userOptional = userRepository.findByEmail(registerRequestDto.getEmail());
+        if (userOptional.isPresent()){
+            return new Result(false,"Email already exist");
+        }
         User user = userMapper.registerDtoToEntity(registerRequestDto);
         user.setAuthority(USER);
         user.setStatus(ACTIVE);

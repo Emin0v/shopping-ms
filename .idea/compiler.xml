@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cart-service" />
         <module name="config-service" />
+        <module name="common-service" />
         <module name="customer-service" />
         <module name="filestore-service" />
         <module name="product-service" />
@@ -24,6 +25,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="banking-service" target="11" />
+      <module name="common-service" target="11" />
       <module name="payment-service" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -32,6 +34,7 @@
       <module name="auth-service" options="-parameters" />
       <module name="banking-service" options="-parameters" />
       <module name="cart-service" options="-parameters" />
+      <module name="common-service" options="-parameters" />
       <module name="config-service" options="-parameters" />
       <module name="customer-service" options="-parameters" />
       <module name="eureka-service" options="-parameters" />

@@ -28,6 +28,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Transactional
     public void createCart(String id) {
         cartRepository.save(Cart.builder().cartId(id).build());
     }
@@ -35,8 +36,12 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public boolean addProductToCart(CartProductDto cartProductDto) {
-        Cart cart = cartRepository.findById(cartProductDto.getCartId()).get();
-        cart.setProducts(Map.of(cartProductDto.getProductId(),cartProductDto.getCount()));
+        Cart cart = Cart.builder()
+                .cartId(cartProductDto.getCartId())
+                .products(Map.of(cartProductDto.getProductId(),cartProductDto.getCount()))
+                .build();
+
+        cartRepository.save(cart);
 
         return true;
     }

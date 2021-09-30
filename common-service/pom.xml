@@ -13,7 +13,7 @@
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
     </properties>
 
-    <artifactId>service-common</artifactId>
+    <artifactId>common-service</artifactId>
 
     <dependencies>
 
