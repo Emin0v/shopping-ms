@@ -6,12 +6,12 @@ import com.company.security.constants.UserStatus;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.Set;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
-import static com.company.security.constants.AuthConstants.PASSWORD_MAX_LENGTH;
 import static com.company.security.constants.AuthConstants.PASSWORD_MIN_LENGTH;
 
 @Entity

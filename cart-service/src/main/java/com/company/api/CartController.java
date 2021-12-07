@@ -33,4 +33,8 @@ public class CartController {
         cartService.addProductToCart(cartProductDto);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteProductFromCart(In)
+
 }

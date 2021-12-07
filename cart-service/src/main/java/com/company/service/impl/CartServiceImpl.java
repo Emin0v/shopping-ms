@@ -3,6 +3,8 @@ package com.company.service.impl;
 import com.company.dto.CartRespDto;
 import com.company.dto.product.CartProductDto;
 import com.company.entity.Cart;
+import com.company.exception.CartNotFoundException;
+import com.company.exception.NotFoundException;
 import com.company.repo.CartRepository;
 import com.company.service.CartService;
 import com.company.service.adapter.CartAdapter;
@@ -44,5 +46,13 @@ public class CartServiceImpl implements CartService {
         cartRepository.save(cart);
 
         return true;
+    }
+
+    @Override
+    @Transactional
+    public void deleteProductFromCart(String cartId, String productId) {
+        Cart cart = cartRepository.findById(cartId).orElseThrow(CartNotFoundException::new);
+        cart.getProducts().remove(productId);
+        cartRepository.save(cart);
     }
 }

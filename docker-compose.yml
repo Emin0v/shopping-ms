@@ -1,5 +1,93 @@
 version: '3.1'
 services:
+  auth-service:
+     build:
+       context: ./auth-service
+       dockerfile: ./Dockerfile
+     image: auth-service
+     depends_on:
+     - mysql
+     <<: *spring-config
+     container_name: auth-service
+
+  cart-service:
+     build:
+       context: ./cart-service
+       dockerfile: ./Dockerfile
+     image: cart-service
+     depends_on:
+     - mysql
+     <<: *spring-config
+     container_name: cart-service
+
+  config-service:
+     build:
+       context: ./config-service
+       dockerfile: ./Dockerfile
+     image: config-service
+     container_name: config-service
+
+  customer-service:
+     build:
+       context: ./customer-service
+       dockerfile: ./Dockerfile
+     image: customer-service
+     depends_on:
+     - mysql
+     <<: *spring-config
+     container_name: customer-service
+
+  order-service:
+     build:
+       context: ./order-service
+       dockerfile: ./Dockerfile
+     image: order-service
+     depends_on:
+     - mysql
+     <<: *spring-config
+     container_name: order-service
+
+  product-service:
+     build:
+       context: ./product-service
+       dockerfile: ./Dockerfile
+     image: product-service
+     depends_on:
+     - mysql
+     <<: *spring-config
+     container_name: product-service
+
+  gateway-service:
+     build:
+       context: ./gateway-service
+       dockerfile: ./Dockerfile
+     image: gateway-service
+     depends_on:
+     - mysql
+     <<: *spring-config
+     container_name: gateway-service
+
+  eureka-service:
+     build:
+       context: ./eureka-service
+       dockerfile: ./Dockerfile
+     image: eureka-service
+     depends_on:
+     - config-service
+     <<: *spring-config
+     container_name: eureka-service
+
+  hystrix-service:
+     build:
+       context: ./hystrix-service
+       dockerfile: ./Dockerfile
+     image: hystrix-service
+     depends_on:
+     - mysql
+     <<: *spring-config
+     container_name: hystrix-service
+
+#database
   mysql:
     image: mysql:5.5
     hostname: mysql
@@ -37,29 +125,7 @@ services:
     command: server /data
 
 
-#  axonserver:
-#    image: axoniq/axonserver
-#    hostname: axonserver
-#    volumes:
-#      - axonserver-data:/data
-#      - axonserver-events:/eventdata
-#      - axonserver-config:/config:ro
-#    ports:
-#      - '8024:8024'
-#      - '8124:8124'
-#      - '8224:8224'
-#    networks:
-#      - axon-demo
-
-
 volumes:
   shopping-ms_mysql_db_data:
   esdata1:
     driver: local
-#  axonserver-data:
-#  axonserver-events:
-#  axonserver-config:
-
-
-#networks:
-#  axon-demo:

@@ -10,4 +10,7 @@ public interface CartService {
      void createCart(String id);
 
      boolean addProductToCart(CartProductDto dto);
+
+     void deleteProductFromCart(String cartId, String productId);
+
 }
