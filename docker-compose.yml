@@ -7,6 +7,7 @@ services:
      image: auth-service
      depends_on:
      - mysql
+     - config-service
      <<: *spring-config
      container_name: auth-service
 
@@ -17,6 +18,7 @@ services:
      image: cart-service
      depends_on:
      - mysql
+     - config-service
      <<: *spring-config
      container_name: cart-service
 
@@ -34,6 +36,7 @@ services:
      image: customer-service
      depends_on:
      - mysql
+     - config-service
      <<: *spring-config
      container_name: customer-service
 
@@ -44,6 +47,7 @@ services:
      image: order-service
      depends_on:
      - mysql
+     - config-service
      <<: *spring-config
      container_name: order-service
 
@@ -54,6 +58,8 @@ services:
      image: product-service
      depends_on:
      - mysql
+     - elasticsearch
+     - config-service
      <<: *spring-config
      container_name: product-service
 
@@ -63,7 +69,8 @@ services:
        dockerfile: ./Dockerfile
      image: gateway-service
      depends_on:
-     - mysql
+     - eureka-service
+     - config-service
      <<: *spring-config
      container_name: gateway-service
 
@@ -83,7 +90,7 @@ services:
        dockerfile: ./Dockerfile
      image: hystrix-service
      depends_on:
-     - mysql
+     - config-service
      <<: *spring-config
      container_name: hystrix-service
 
