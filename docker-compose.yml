@@ -8,7 +8,6 @@ services:
      depends_on:
      - mysql
      - config-service
-     <<: *spring-config
      container_name: auth-service
 
   cart-service:
@@ -19,7 +18,6 @@ services:
      depends_on:
      - mysql
      - config-service
-     <<: *spring-config
      container_name: cart-service
 
   config-service:
@@ -37,7 +35,6 @@ services:
      depends_on:
      - mysql
      - config-service
-     <<: *spring-config
      container_name: customer-service
 
   order-service:
@@ -48,7 +45,6 @@ services:
      depends_on:
      - mysql
      - config-service
-     <<: *spring-config
      container_name: order-service
 
   product-service:
@@ -59,8 +55,8 @@ services:
      depends_on:
      - mysql
      - elasticsearch
+     - shopping-s3
      - config-service
-     <<: *spring-config
      container_name: product-service
 
   gateway-service:
@@ -71,7 +67,6 @@ services:
      depends_on:
      - eureka-service
      - config-service
-     <<: *spring-config
      container_name: gateway-service
 
   eureka-service:
@@ -81,18 +76,16 @@ services:
      image: eureka-service
      depends_on:
      - config-service
-     <<: *spring-config
      container_name: eureka-service
 
-  hystrix-service:
+  hystrix-dashboard:
      build:
-       context: ./hystrix-service
+       context: ./hystrix-dashboard
        dockerfile: ./Dockerfile
-     image: hystrix-service
+     image: hystrix-dashboard
      depends_on:
      - config-service
-     <<: *spring-config
-     container_name: hystrix-service
+     container_name: hystrix-dashboard
 
 #database
   mysql:

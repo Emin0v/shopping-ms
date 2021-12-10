@@ -35,6 +35,9 @@ public class CartController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteProductFromCart(In)
+    public ResponseEntity<HttpStatus> deleteProductFromCart(@RequestParam String cartId, @RequestParam String productId){
+        cartService.deleteProductFromCart(cartId, productId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
