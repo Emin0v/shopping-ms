@@ -8,6 +8,8 @@ import com.company.service.ProductEsService;
 import com.company.service.ProductService;
 import com.company.util.ApiPaths;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -18,7 +20,7 @@ import java.util.Set;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ApiPaths.ProductCtrl.CTRL)
-//@CrossOrigin("*")
+@CrossOrigin("*")
 public class ProductController {
 
     private final ProductService productService;

@@ -13,6 +13,7 @@ import com.company.service.CategoryService;
 import com.company.service.ProductEsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -28,6 +29,7 @@ public class ProductEsServiceImpl implements ProductEsService {
     private final CategoryService categoryService;
 
     @Override
+    @Transactional
     public Mono<ProductEs> saveNewProduct(Product product) {
         return productEsRepository.save(
                 ProductEs.builder()

@@ -3,8 +3,8 @@ package com.company.model;
 public enum MoneyTypes {
 
     USD("Dolar", "$"),
-    EUR("Euro", "E"),
-    TL("Turk Lirasi", "T");
+    EUR("Euro", "Eur"),
+    TL("Turk Lirasi", "Tl");
 
     private String label;
     private String symbol;

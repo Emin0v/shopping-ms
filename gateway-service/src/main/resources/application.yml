@@ -42,7 +42,18 @@ spring:
                 name: auth-service
                 fallbackUri: forward:/fb/auth
 
-        - id: auth-service
+        - id: cart-service
+          uri: lb://CART-SERVICE
+          predicates:
+            - Path=api/cart/**
+          filters:
+            - RewritePath=/api/cart/(?<segment>.*), /$\{segment}
+            - name: Hystrix
+              args:
+                name: cart-service
+                fallbackUri: forward:/fb/cart
+
+        - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=api/orders/**

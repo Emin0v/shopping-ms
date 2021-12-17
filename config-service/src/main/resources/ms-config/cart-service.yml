@@ -8,7 +8,7 @@ spring:
       allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.99.100:3335/shoppingDb
+    url: jdbc:mysql://192.168.99.100:3306/shoppingDb
     username: root
     password: root
   jpa:
