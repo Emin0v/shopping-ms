@@ -15,7 +15,9 @@ spring:
       authentication-database: admin
       auto-index-creation: true
       database: shoppingDb
-      host: localhost
+      username: root
+      password: root
+      host: 192.168.99.100
       port: 27017
 
 eureka:

@@ -13,6 +13,6 @@ case $1 in
 
   ;;
   "run")
-    docker-compose -p "microservices" up -d --force-recreate --build
+    deployment-docker-compose -p "microservices" up -d --force-recreate --build
 ;;
 esac

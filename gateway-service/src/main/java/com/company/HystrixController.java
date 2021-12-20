@@ -1,6 +1,5 @@
 package com.company;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,22 +7,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/fb")
 public class HystrixController {
 
-    @GetMapping("/users")
+    @RequestMapping("/users")
     public String accountFallback(){
         return "Customer Service is not available.";
     }
 
-    @GetMapping("/products")
-    public String ticketFallback(){
+    @RequestMapping("/products")
+    public String productFallback(){
         return "Product Service is not available.";
     }
 
-    @GetMapping("/auth")
+    @RequestMapping("/auth")
     public String authFallback(){
         return "Auth Service is not available.";
     }
 
-    @GetMapping("/order")
+    @RequestMapping("/order")
     public String orderFallback(){
         return "Auth Service is not available.";
     }

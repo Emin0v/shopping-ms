@@ -17,16 +17,18 @@ public class ProductDeliveryServiceImpl implements ProductDeliveryService {
     }
 
     public boolean freeDeliveryCheck(String productId, BigDecimal price, MoneyTypes moneyType) {
-        switch (moneyType){
-            case USD:
-                return price.compareTo(BigDecimal.valueOf(35L)) <= 0;
-            case EUR:
-                return price.compareTo(BigDecimal.valueOf(30L)) <= 0;
-            case TL:
-                return price.compareTo(BigDecimal.valueOf(50L)) <= 0;
-            default:
-                return false;
-        }
+//        switch (moneyType){
+//            case USD:
+//                return price.compareTo(BigDecimal.valueOf(35L)) <= 0;
+//            case EUR:
+//                return price.compareTo(BigDecimal.valueOf(30L)) <= 0;
+//            case TL:
+//                return price.compareTo(BigDecimal.valueOf(50L)) <= 0;
+//            default:
+//                return false;
+//        }
+
+        return true;
 
     }
 }

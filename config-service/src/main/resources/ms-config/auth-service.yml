@@ -19,11 +19,10 @@ spring:
 
 eureka:
   client:
+    instance:
+      hostname: ${EUREKA_SERVER_HOSTNAME:localhost}
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8500}/eureka/
-    register-with-eureka: false
-  instance:
-    preferIpAddress: true
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8500/eureka/}
 
 management:
   endpoints:
