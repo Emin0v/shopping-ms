@@ -27,6 +27,7 @@
       <module name="banking-service" target="11" />
       <module name="common-service" target="11" />
       <module name="payment-service" target="11" />
+      <module name="service-parent" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -45,9 +46,9 @@
       <module name="order-service" options="-parameters" />
       <module name="payment-service" options="-parameters" />
       <module name="product-service" options="-parameters" />
-      <module name="service-common" options="-parameters" />
+      <module name="service-common" options="" />
       <module name="service-parent" options="-parameters" />
-      <module name="shopping-ms" options="-parameters" />
+      <module name="shopping-ms" options="" />
       <module name="zipkin-server" options="-parameters" />
     </option>
   </component>

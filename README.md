@@ -19,6 +19,7 @@ You don't need java or maven in your machine because this project is compiled in
 
 * <a href="https://www.oracle.com/java/technologies/downloads/">JDK 11</a>
 * <a href="https://www.jetbrains.com/idea/">Intellij Idea Ultimate</a>
+* <a href="https://www.gnu.org/software/make/">Make</a>
 * <a href="https://git-scm.com/">Git</a>
 * <a href="https://www.docker.com/">Docker</a>
 * <a href="https://docs.docker.com/compose/gettingstarted/">Docker-compose</a>
@@ -42,3 +43,16 @@ You don't need java or maven in your machine because this project is compiled in
 * mysql
 * elasticsearch
 * mongo
+
+### Run
+
+All you need to do is run the following commands:
+
+	git clone https://github.com/Emin0v/shopping-ms
+	cd netflix-microservices
+	make build
+	make run
+
+You will see all registered microservices as the following image:
+
+![](../../Pictures/Screenshots/Screenshot (100).png)

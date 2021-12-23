@@ -1,16 +1,11 @@
 package com.company.service.impl;
 
 import com.company.client.CartServiceClient;
-import com.company.dto.customer.UserRespDto;
 import com.company.entity.Customer;
 import com.company.repo.CustomerRepository;
 import com.company.service.CustomerService;
-import com.company.utilities.results.DataResult;
-import com.company.utilities.results.ErrorDataResult;
-import com.company.utilities.results.ErrorResult;
 import com.company.utilities.results.Result;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +19,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CartServiceClient cartServiceClient;
-    private final ModelMapper modelMapper;
 
     @Override
     @Transactional
