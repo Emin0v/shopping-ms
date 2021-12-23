@@ -55,4 +55,5 @@ All you need to do is run the following commands:
 
 You will see all registered microservices as the following image:
 
-![](../../Pictures/Screenshots/Screenshot (100).png)
+![Eureka](https://user-images.githubusercontent.com/64434582/147285711-9e01bad7-68b1-4aa4-889b-d61aab5e2fed.png)
+
